@@ -1,0 +1,225 @@
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    .check-box{
+        line-height: 35px;
+        display: inline;
+        margin-right: 10px;
+
+    }
+
+
+    .user-text{
+        width: 40%;
+        float: left;
+        margin-left: 100px;
+    }
+
+    .headimg{
+        /*background-color: #0e9aef;*/
+    }
+
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+    <div class="ibox-content m-t">
+        <p class="page-title">用户信息</p>
+        <div class="user-text">
+            <form method="post"  class="form-horizontal" style="padding-top: 50px">
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">用户编号</label>
+                    <div class="col-sm-7">
+                        <input type="hidden" name="id" value="">
+                        <input type="text" value="TXB20191116185702431" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="lisheng" disabled="disabled" name="nick_name" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="男" disabled="disabled" name="user_sex" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">生日</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="1999年03月25日" disabled="disabled" name="user_birth" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">联系电话</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="18383086596" disabled="disabled" name="user_phone" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">学校</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="电子科技大学成都学院" disabled="disabled" name="school_name" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">状态</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="正常" disabled="disabled" name="trade_status" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">注册时间</label>
+                    <div class="col-sm-7">
+                        <input type="text" value="2019年05月24日" disabled="disabled" name="add_time" class="form-control disabled_flag"  >
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <img class="headimg" width="300px" height="300px" src="__SAN__/image/1.png"  alt="headimg"/>
+
+
+        <div class="" style="margin-top: 0">
+            <!--<p class="page-title">商品记录</p>-->
+            <table class="table admin-mb0 table-hover">
+                <thead>
+                <tr>
+                    <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
+                    <th class="col-sm-3" style="border-bottom:0px !important">操作记录</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">操作地址</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                </tbody>
+            </table>
+            <div style="text-align: center"></div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+
+</script>
+<script>
+    $(function () {
+        $(".user").addClass("active");
+        $(".user ul").addClass("in");
+    });
+</script>

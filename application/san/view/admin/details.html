@@ -1,0 +1,369 @@
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    .check-box{
+        line-height: 35px;
+        display: inline;
+        margin-right: 10px;
+
+    }
+    .log{
+        width: 70%;
+        margin-left: 100px;
+    }
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+    <div class="ibox-content m-t">
+        <p class="page-title">管理员信息</p>
+
+
+        <form method="post"  class="form-horizontal" style="padding-top: 50px">
+            <input id="disabled_flag" type="hidden" value="{$info_status}">
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-6">
+                    <input type="hidden" name="id" value="{$info.id}">
+                    <input type="text" value="{$info.name}" name="name" placeholder="账号" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-6">
+                    <input type="text" value="******" name="password" placeholder="" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">身份</label>
+                <div class="col-sm-6">
+                    {if condition="$info.id eq 1"}
+                    <input type="text" value="超级管理员" name="type" placeholder="神秘人员" class="form-control disabled_flag"  >
+                    {else}
+                    <input type="text" value="普通管理员" name="type" placeholder="神秘人员" class="form-control disabled_flag"  >
+                    {/if}
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">手机号</label>
+                <div class="col-sm-6">
+                    <input type="text" value="{$info.phone}" name="phone" placeholder="手机号" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-6">
+                    <input type="hidden" name="rel_sex" value="{$info.sex}">
+                    {if condition="$info.sex eq 1"}
+                    <div class="check-box"><input type="radio" name="sex" value="1" title="男" checked="" onclick="changeSex($(this).val())">男</div>
+                    <div class="check-box"><input type="radio" name="sex" value="2" title="女" onclick="changeSex($(this).val())">女</div>
+                    {else}
+                    <div class="check-box"><input type="radio" name="sex" value="1" title="男" onclick="changeSex($(this).val())">男</div>
+                    <div class="check-box"><input type="radio" name="sex" value="2" title="女" checked="" onclick="changeSex($(this).val())">女</div>
+                    {/if}
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">管理区域</label>
+                <div class="col-sm-6">
+                    <!--<input type="text" value="{$info.school_name}" name="manage_school" placeholder="管理区域" class="form-control disabled_flag"  >-->
+                    <div class="dropdown">
+
+                        <button type="button" class="btn btn-default dropdown-toggle manage_school disabled_flag" data-toggle="dropdown">
+                            <span class="buttonText">{$info.school_name}</span>
+                            <span class="caret"></span>
+                        </button>
+                        <input type="hidden" name="manage_school" value="{$info.manage_school}">
+                        <ul class="dropdown-menu" role="menu">
+                            {volist name="$school_list" id="vo"}
+                            <li><a href="#" onclick="shows($(this).text())">{$vo.school_id}<span> | </span>{$vo.school_name}</a></li>
+                            {/volist}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-6">
+                    <input type="hidden" name="rel_status" value="{$info.status}">
+                    {if condition="$info.status eq 1"}
+                    <div class="check-box"><input type="radio" name="status" value="1" title="正常" checked="" onclick="changeStatus($(this).val())" >正常</div>
+                    <div class="check-box"><input type="radio" name="status" value="2" title="禁用" onclick="changeStatus($(this).val())">禁用</div>
+                    {else}
+                    <div class="check-box"><input type="radio" name="status" value="1" title="正常" onclick="changeStatus($(this).val())" >正常</div>
+                    <div class="check-box"><input type="radio" name="status" value="2" title="禁用" checked="" onclick="changeStatus($(this).val())">禁用</div>
+                    {/if}
+                </div>
+                <!--<div class="col-sm-6">-->
+                    <!--<input type="text" value="" name="status" placeholder="状态" class="form-control">-->
+                <!--</div>-->
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-7">
+                    <button class="btn btn-primary disabled_flag" type="button" id="save" data-id="">保存</button>
+                    <a class="btn btn-white" href='javascript:history.back(-1)'>返回列表</a>
+                </div>
+            </div>
+        </form>
+
+
+        <!--操作记录-->
+        <p class="page-title">操作记录</p>
+        <div class="log">
+            <div class="ibox-content border0" style="margin-top: 0">
+                <table class="table admin-mb0 table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
+                        <th class="col-sm-3" style="border-bottom:0px !important">操作记录</th>
+                        <th class="col-sm-2" style="border-bottom:0px !important">操作地址</th>
+                        <th class="col-sm-2" style="border-bottom:0px !important">时间</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {volist name="$log" id="vo" key="key"}
+                    <tr style="cursor: pointer;" class="hh" data-href="">
+                        <td style="height: 48px">{$key}</td>
+                        <td>{$vo.operate}</td>
+                        <td>{$vo.ip}</td>
+                        <td>{$vo.time|@date="Y-m-d H:i:s",###}</td>
+                    </tr>
+                    {/volist}
+
+                    </tbody>
+                </table>
+                <div style="text-align: center">{$log->render()}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+    // 下拉列表点击选项触发的函数
+    function shows(text) {
+        // 分割a标签text文本内容 -> id name
+        var strArray = text.split(' | ')
+        // 显示内容 name
+        $('.buttonText').text(strArray[1]);
+        // 选择管理区域 id
+        $('input[name="manage_school"]').val(strArray[0]);
+    }
+</script>
+<script>
+    $(function () {
+        $(".setting").addClass("active");
+        $(".setting ul").addClass("in");
+
+        console.log($("#disabled_flag").val());
+
+        // 禁用掉管理员身份修改
+        $('input[name="type"]').attr("disabled", true);
+
+        // 普管访问他人的信息
+        // 禁用所有修改项和保存按钮
+        if($("#disabled_flag").val() == 'no'){
+            $(".disabled_flag").attr("disabled", true);
+            $('input[name="status"]').attr("onclick","return false");
+            $('input[name="sex"]').attr("onclick","return false");
+        }
+
+        // 普管访问自己的信息
+        // 禁用状态修改项、管理区域修改项
+        if($("#disabled_flag").val() == 'is_self'){
+            $('input[name="status"]').attr("onclick","return false");
+            $('input[name="manage_school"]').attr("disabled", true);
+            $('.manage_school').attr("disabled", true);
+        }
+
+        // 超管访问自己的信息
+        // 禁用账号名称修改项、状态修改项、管理区域修改项
+        if($("#disabled_flag").val() == 'is_super_self'){
+            $('input[name="name"]').attr("disabled", true);
+            $('input[name="status"]').attr("disabled", true);
+            $('input[name="manage_school"]').attr("readOnly","readOnly");
+            $('.manage_school').attr("disabled", true);
+        }
+    });
+    $('#save').click(function () {
+
+        // 获取页面上的值
+        var id = $('input[name="id"]').val();
+        var name = $('input[name="name"]').val();
+        var phone = $('input[name="phone"]').val();
+        var manage_school = $('input[name="manage_school"]').val();
+        var status = $('input[name="rel_status"]').val();
+        var sex = $('input[name="rel_sex"]').val();
+
+        if($('input[name="password"]').val() != "******"){
+            var password = $('input[name="password"]').val();
+        }
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            layer.msg('手机号码有误，请重填');
+            return false;
+        }
+
+        // 向服务器提交请求 Admin/save
+        $.ajax({
+            url: "{:url('Admin/save')}",
+            data:{
+                "id":id,
+                "name": name,
+                "password": password,
+                "phone": phone,
+                "manage_school": manage_school,
+                "status": status,
+                "sex": sex
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (res) {
+                console.log("回来啦");
+                console.log(res);
+                if (res.code == 10000) {
+                    layer.msg(res.msg);
+                    setTimeout(function () {
+                        window.location.href = '{:url("Admin/index")}'
+                    }, 2000);
+                } else {
+                    layer.msg(res.msg);
+                }
+            },
+            err: function (res) {
+                console.log(res);
+            }
+        })
+    });
+
+    // 点击状态修改项
+    function changeStatus (s) {
+        // 不允许普管修改状态
+        if($("#disabled_flag").val() == 'is_self' || $("#disabled_flag").val() == 'no'){
+            return false;
+        }
+        // 点击checkbox将选择值赋给真实值
+        $('input[name="rel_status"]').val(s)
+    }
+
+    // 点击性别修改项
+    function changeSex (s) {
+        // 点击checkbox将选择值赋给真实值
+        $('input[name="rel_sex"]').val(s)
+    }
+
+    $('.hh').on('click', function(event) {
+        event.preventDefault();
+        window.location.href=$(this).attr('data-href')
+
+    });
+
+</script>

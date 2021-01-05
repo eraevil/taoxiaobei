@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>又晟资产管理（上海）有限公司</title>
+    <meta name="keywords" content="又晟资产">
+    <meta name="description" content="又晟资产">
+    <link rel="stylesheet" href="__INDEX__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__INDEX__/css/common.css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/124360/46716/5bcd9b05f629d9185c3277e8.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+    <script type="text/javascript" src="__INDEX__/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/bootstrap.min.js"></script>
+
+    <style>
+    .one{
+        background: url('__INDEX__/image/gongsijainjie.jpg') no-repeat center;
+        height: 400px;
+        margin-top: 90px;
+    }
+    .one>p:first-child{
+        text-align: center;
+        color:#ffffff;
+        font-weight: bold;
+        padding-top:140px;
+        font-size:36px;
+    }
+    .one p:last-child {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+
+    #information{
+        margin:99px auto 80px;
+        border:1px solid #e5e5e5;
+    }
+    #information>img{
+        padding:20px;
+    }
+    #information>div{
+        border-left: 1px solid #e5e5e5;
+        padding-bottom: 20px;
+    }
+    #information>div>p{
+        font-size: 18px;
+        margin-top: 10px;
+        margin-left: 40px;
+    }
+    #container{
+        width: 100%;
+        height: 420px;
+    }
+    .feedback {
+        width: 100%;
+        margin: 22px auto 0;
+        background: #ffffff;
+        padding: 63px 100px 50px
+    }
+    .feedback>.name {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 50px;
+    }
+    .input_name, .input_phone {
+        width: 320px;
+        height: 48px;
+        border: 1px solid #e6e6e6;
+        border-radius: 2px;
+        line-height: 48px;
+        padding: 0 20px;
+    }
+    #type {
+        width: 100%;
+        display: block;
+        border: 1px solid #e6e6e6;
+        border-radius: 2px;
+        line-height: 48px;
+        height: 48px;
+        margin-top: 30px;
+        padding: 0 15px;
+    }
+    .text {
+        border: 1px solid #e6e6e6;
+        border-radius: 2px;
+        background: #ffffff;
+        padding: 15px 20px;
+        margin-top: 30px;
+    }
+    .code {
+        margin-top: 30px;
+    }
+    .Sure {
+        color: #ffffff;
+        display: block;
+        margin-top: 30px;
+        width: 160px;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        border: 0;
+        background: #4669ff;
+    }
+    textarea {
+        width: 100%;
+        height: 155px;
+        resize: none;
+        border: 0;
+    }
+    .input_code {
+        display: inline-block;
+        width: 160px;
+        height: 48px;
+        line-height: 48px;
+        border: 1px solid #e6e6e6;
+        padding: 0 15px;
+        margin-right: 15px;
+    }
+    .code>img {
+        display: inline-block;
+        height: 48px;
+        width: 120px;
+        border: 1px solid #e6e6e6;
+        margin-right: 20px;
+        vertical-align: top;
+    }
+</style>
+</head>
+<body class="gray-bg">
+{include file="public/nav"/}
+<div  class="text-center text-white text-center  one" >
+    <p>笃信托付&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信誉天下</p>
+    <p>为致力于成为受人尊敬的国际化企业而奋斗</p>
+</div>
+
+<div id="about">
+    <ul class="nav">
+        <li>
+            <a href="/page/3">公司简介</a>
+            <span ></span>
+        </li>
+        <li>
+            <a href="/page/4">发展历程</a>
+        </li>
+        <li>
+            <a href="/page/5">企业文化</a>
+        </li>
+        <li>
+            <a href="/page/6">办公环境</a>
+        </li>
+        <li>
+            <a href="/column/37">加入我们</a>
+        </li>
+        <li class="active">
+            <a href="/page/8">联系我们</a>
+        </li>
+    </ul>
+
+    <div id="information" class="admin_flex">
+        <img src="{$info['mpwechat_qrcode']}" alt="">
+        <div>
+            <p>电话：{$info['tel']}</p>
+            <p>传真：{$info['fax']}</p>
+            <p>邮箱：{$info['email']}</p>
+            <p>邮编：{$info['code']}</p>
+            <p>地址：{$info['address']}</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.10&key=f4a8686a7c4d553212eef1b63f99c115"></script>
+    <div id="container"></div>
+    <script>
+        var map, jd, wd,dz;
+        var longitude = "{$info['address_longitude']}";
+        var dimension ="{$info['address_latitude']}";
+        //加载地图，调用浏览器定位服务
+        map = new AMap.Map('container', {
+            resizeEnable: true,
+            zoom:16,
+            zoomEnable:true,
+            center: [longitude,dimension]
+        });
+        var marker = new AMap.Marker({
+            position: map.getCenter(),
+            draggable: true,
+            cursor: 'move',
+            raiseOnDrag: true
+        });
+        marker.setMap(map);
+
+    </script>
+    <div class="feedback">
+        <p class="name">我要留言</p>
+        <div class="admin_flexjust">
+            <input type="text" class="input_name" placeholder="姓名">
+            <input type="text" class="input_phone" placeholder="联系方式">
+        </div>
+        <select name="type" id="type">
+            <option value="0" selected="selectd">请选择留言类型</option>
+            <option value="投诉">投诉</option>
+            <option value="建议">建议</option>
+            <option value="其他">其他</option>
+        </select>
+        <div class="text">
+            <textarea name="text" maxlength="360" placeholder="请填写您的留言"></textarea>
+            <p class="graytext"><span class="number ">0</span>/360</p>
+        </div>
+        <div class="code">
+            <input type="text" placeholder="验证码" class="input_code">
+            <img src="/captcha.html" id="verify_img">
+            <a class="switch" href="javascript:refreshVerify()">看不清，换一张</a>
+        </div>
+        <button class="Sure redbg">提交</button>
+    </div>
+</div>
+{include file="public/footer"/}
+</body>
+<script>
+    
+    var type=0;
+    $('.Sure').click(function(){
+        if(type==1){
+            return false;
+        }
+        if($('.input_name').val()==''){
+            layer.msg('请填写您的姓名');
+            return false;
+        }
+        if($('.input_phone').val()==''){
+            layer.msg('请填写您的联系方式');
+            return false;
+        }
+        if($('#type').val()==0){
+            layer.msg('请选择留言类型');
+            return false;
+        }
+        if($('textarea').val()==''){
+            layer.msg('请填写您的留言');
+            return false;
+        }
+        if($('.input_code').val()==''){
+            layer.msg('请填写验证码');
+            return false;
+        }
+        type=1;
+        $.ajax({
+            url:'/index/page/getmessage.html',
+            data:{
+                name:$('.input_name').val(),
+                mobile:$('.input_phone').val(),
+                type:$('#type').val(),
+                message:$('textarea').val(),
+                verifycode:$('.input_code').val()
+            },
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code==10000){
+                    layer.confirm('感谢您的留言反馈', {
+                        btn: ['好的'] //按钮
+                    }, function(){
+                        location.href='';
+                    });
+                }else{
+                    layer.msg(res.msg);
+                    type=0;
+                    if(res.code==10002){
+                        var ts = Date.parse(new Date())/1000;
+                        var img = document.getElementById('verify_img');
+                        img.src = "/captcha?id="+ts;
+                    }
+                }
+            },
+            err:function(res){
+                console.log(res);
+            }
+        });
+    });
+
+    //字数
+    $("textarea").on('input propertychange', function () {
+        //显示字数
+        $(".number").html($(this).val().length);
+    });
+    $("textarea").on('focus',function(){
+        $('.text').css({borderColor:'#ff2d4b'})
+    });
+    $("textarea").on('blur',function(){
+        $('.text').css({borderColor:'#e6e6e6'})
+    });
+
+
+</script>
+</html>
+

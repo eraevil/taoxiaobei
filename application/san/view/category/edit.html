@@ -1,0 +1,88 @@
+{include file="public/header"}
+<style>
+    label{
+        font-weight: normal;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>编辑文章</h5>
+            <div class="ibox-tools">
+                <a href="{:url('Content/index')}" style="margin-right: 20px;" class="btn btn-white">返回列表</a>
+            </div>
+        </div>
+        <div class="ibox-content m-t">
+            <form method="post"  class="form-horizontal" style="padding-top: 50px">
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="{$info['title']}" name="title" placeholder="请填写商品类型" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">1描述</label>
+                    <div class="col-sm-6">
+                        <!-- <input type="text" value="" name="des" placeholder="请填写文章描述" class="form-control"> -->
+                        <textarea required="required" name="desc" placeholder="类型详细描述" class="form-control"  style="height: 120px">{$info['desc']}</textarea>
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">图标</label>
+                    <div class="col-sm-6">
+                        <div class="m-t">
+                            <img  id="icon" width="375" data-sign="0"  src="{$info['icon']}" >
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-7">
+                        <button class="btn btn-primary" type="button" id="save" data-id="{$info['id']}">保存</button>
+                        <a class="btn btn-white" href='javascript:history.back(-1)'>返回列表</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{include file="public/footer"}
+
+<script type="text/javascript">
+    //提交操作
+    $('#save').on('click', function(event) {
+        //一系列的判断
+        if($('input[name="title"]').val()===''){
+            layer.msg('请填写商品类型');
+            return false;
+        }
+        console.log("提交")
+        //ajax提交
+        $.ajax({
+            url:"{:url('Category/edit_one')}",
+            data:{
+                id:$(this).data('id'),
+                title:$('input[name="title"]').val(),
+                desc:$('textarea[name="desc"]').val(),
+            },
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code==10000){
+                    layer.msg(res.msg);
+                    $('#save').attr('disabled',true)
+                    setTimeout(function(){
+                        window.history.back(-1);
+                    },1500);
+                }else{
+                    layer.msg(res.msg);
+                }
+            }
+        });
+
+    });
+
+
+</script>
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+
+
+    <div class="ibox-content border0" >
+
+        <div style="float:top;">
+            <div style="display: inline;float: left;"><p class="page-title">用户列表</p></div>
+
+            <div>
+                <button style="display: inline; float: right;" class="btn btn-primary disabled_flag" type="button" data-id="" onclick="clickAdd()"><a id="add" href="{:url('Admin/add')}" style="color:#fff;">新增</a></button>
+            </div>
+
+        </div>
+
+
+        <br>
+
+        <div style="margin-top: 35px">
+            <table class="table admin-mb0 table-hover">
+                <thead>
+                <tr>
+                    <th class="col-sm-4" style="border-bottom:0px !important">用户编号</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">昵称</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">性别</th>
+                    <th class="col-sm-3" style="border-bottom:0px !important">联系电话</th>
+                    <th class="col-sm-4" style="border-bottom:0px !important">学校</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">状态</th>
+                    <th class="col-sm-3" style="border-bottom:0px !important">注册时间</th>
+                    <th class="col-sm-3" style="border-bottom:0px !important">详情</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--<tr style="cursor: pointer;" class="hh" data-href="">-->
+                    <!--<td style="height: 48px">TXB20191116185702431</td>-->
+                    <!--<td style="height: 48px">@</td>-->
+                    <!--<td>男</td>-->
+                    <!--<td>18383086596</td>-->
+                    <!--<td>电子科技大学成都学院</td>-->
+                    <!--<td>正常</td>-->
+                    <!--<td>2021-01-03</td>-->
+                    <!--<td>-->
+                        <!--<a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>-->
+                        <!--<button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>-->
+                    <!--</td>-->
+                <!--</tr>-->
+
+                {volist name="$user" id="vo"}
+                <tr style="cursor: pointer;" class="hh" data-href="">
+                    <td style="height: 48px">{$vo.user_num}</td>
+                    <td style="height: 48px">{$vo.nick_name}</td>
+                    {if condition="$vo.user_sex eq 1"}
+                    <td>男</td>
+                    {else}
+                    <td>女</td>
+                    {/if}
+                    <td>{$vo.user_phone}</td>
+                    <td>{$vo.school_name}</td>
+                    {if condition="$vo.trade_status eq 1"}
+                    <td>正常</td>
+                    {else}
+                    <td>禁用</td>
+                    {/if}
+                    <td>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
+                    <td>
+                        <a href="{:url('User/details',['id' => $vo.user_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>
+                        <button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>
+                    </td>
+                </tr>
+                {/volist}
+
+
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center">{$user->render()}</div>
+
+
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+    // 触发add按钮
+    function clickAdd(){
+        console.log($("#add").text())
+        document.getElementById("add").click();
+    }
+
+    // 点击删除
+    function clickDel(id,name){
+        str = "确认删除管理员：【 " + name + "】？";
+
+        console.log(str)
+
+        var question = confirm(str);
+        if (question == true)
+        {
+            $.ajax({
+                url: "{:url('Admin/delete')}",
+                data:{
+                    "id": id
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function (res) {
+                    console.log("回来啦");
+                    console.log(res);
+                    if (res.code == 10000) {
+                        if(res.msg != '') layer.msg(res.msg);
+                        setTimeout(function () {
+                            window.location.href = '{:url("Admin/index")}'
+                        }, 2000);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                },
+                err: function (res) {
+                    console.log(res);
+                }
+            })
+        }
+        else
+        {
+            layer.msg('已取消')
+            return;
+        }
+    }
+
+    $(function () {
+        $(".user").addClass("active");
+        $(".user ul").addClass("in");
+    });
+    // $('.hh').on('click', function(event) {
+    //     event.preventDefault();
+    //     window.location.href=$(this).attr('data-href')
+    //
+    // });
+
+</script>

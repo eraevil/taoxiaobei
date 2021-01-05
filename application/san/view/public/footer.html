@@ -1,0 +1,68 @@
+</div>
+
+</div>
+<!--右侧部分结束-->
+</div>
+<script src="__SAN__/js/jquery/dist/jquery-2.2.0.js"></script>
+<script src="__SAN__/js/bootstrap.min.js"></script>
+<script src="__SAN__/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__SAN__/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__SAN__/js/hplus.js"></script>
+
+<script src="__SAN__/layer/layer.js"></script>
+<script src="__STATIC__/san/laydate/laydate/laydate.js"></script>
+<script src="__SAN__/layui/layui.js"></script>
+<script src="__SAN__/js/common.js"></script>
+<script src="__SAN__/js/viewer.js"></script>
+
+
+
+<!--Hashs方法是解决iframe刷新回到首页的问题-->
+<script>
+    $('.loginOut').click(function() {
+        layer.confirm('确定退出吗', {
+            btn: ['确定', '取消'] //按钮
+        }, function() {
+            $.ajax({
+                url: '{:url("Login/logout")}',
+                success: function(res) {
+                    if (res.code == 10000) {
+                        layer.msg(res.msg);
+                        setTimeout(function () {
+                            window.location.href = '{:url("Login/index")}'
+                        }, 2000);
+                    }
+                }
+            })
+        })
+    });
+    $('.openNav').on('click',  function(event) {
+        if ($('body').hasClass('mini-navbar')) {
+            $("body").removeClass("mini-navbar");
+        }
+    });
+
+    //导航刷新高亮
+var _path=window.location.pathname;
+$('.J_menuItem').each(function(){
+    if(_path==$(this).attr('href')){
+        $(this).css({'color':'#fff'});
+        $(this).parent().parent().addClass('in');
+        $(this).parent().parent().parent().addClass('active').siblings().removeClass('active');
+    }else{
+        _path=_path.replace('/san/','');
+        _path = _path.split('/')[0];
+        var Select=$(this).attr('href');
+        Select=Select.replace('/san/','');
+        Select = Select.split('/')[0];
+        if(_path==Select){
+            $(this).css({'color':'#fff'});
+            $(this).parent().parent().addClass('in');
+            $(this).parent().parent().parent().addClass('active');
+        }
+    }
+})
+</script>
+</body>
+</html>
+

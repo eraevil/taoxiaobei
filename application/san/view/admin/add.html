@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    .page-title{
+        font-family: "Microsoft YaHei";
+        font-size: 20px;
+    }
+    .check-box{
+        line-height: 35px;
+        display: inline;
+        margin-right: 10px;
+
+    }
+    .log{
+        width: 65%;
+        margin-left: 100px;
+    }
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+
+    <div class="ibox-content m-t">
+        <input type="hidden" value="{$op}" id="op">
+        <p class="page-title">管理员信息</p>
+        <form method="post"  class="form-horizontal" style="padding-top: 50px">
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-6">
+                    <input type="text" value="" name="name" placeholder="账号,不允许含特殊字符" class="form-control" onkeyup="value=value.replace(/[\d]|&quot;|&lt;|&gt;|[\（\）\……\~\`\·\|\【\】\》\《\'\!\！\{\}\#\$\￥\%\^\&\*\(\)\[\]\:\;\：\；\\\‘\“\”\’\,\，\.\。\/\、\?\？\_\-\——\=\+]|@|/g,'')">
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-6">
+                    <input type="password" autocomplete="new-password" value="" name="password1" placeholder="请输入密码" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-6">
+                    <input type="password" autocomplete="new-password" value="" name="password2" placeholder="请确认密码" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">手机号</label>
+                <div class="col-sm-6">
+                    <input type="text" value="" name="phone" placeholder="请输入合法手机号" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-6">
+                    <input type="hidden" name="rel_sex" value="1">
+                    <div class="check-box"><input type="radio" name="sex" value="1" title="男" onclick="changeSex($(this).val())">男</div>
+                    <div class="check-box"><input type="radio" name="sex" value="2" title="女" onclick="changeSex($(this).val())">女</div>
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label">管理区域</label>
+                <div class="col-sm-6">
+                    <div class="dropdown">
+
+                        <button type="button" class="btn btn-default dropdown-toggle manage_school disabled_flag" data-toggle="dropdown">
+                            <span class="buttonText">选择管理区域</span>
+                            <span class="caret"></span>
+                        </button>
+                        <input type="hidden" name="manage_school" value="">
+                        <ul class="dropdown-menu" role="menu">
+                            {volist name="$info" id="vo"}
+                            <li>
+                                <a href="#" onclick="shows($(this).text())">{$vo.school_id}<span> | </span>
+                                    {$vo.school_name}
+                                    {if condition="$vo.admin != null"}<span> | </span>
+                                    【   &nbsp;
+                                        {volist name="$vo.admin" id="ad"}
+                                        {$ad.name}&nbsp;
+                                        {/volist}
+                                    】
+                                    {/if}
+                                </a>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-7">
+                    <button class="btn btn-primary" type="button" id="save" data-id="" onclick="add()">保存</button>
+                    <a class="btn btn-white" href='javascript:history.back(-1)'>返回列表</a>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+    function add(){
+
+        // 获取页面上的值
+        var name = $('input[name="name"]').val();
+        var phone = $('input[name="phone"]').val();
+        var manage_school = $('input[name="manage_school"]').val();
+        var sex = $('input[name="rel_sex"]').val();
+
+        if(name == ""){
+            layer.msg('请输入账号');
+            return false;
+        }
+        if($('input[name="password1"]').val() == ""){
+            layer.msg('请输入密码');
+            return false;
+        }
+        if($('input[name="password2"]').val() == ""){
+            layer.msg('请确认密码');
+            return false;
+        }
+        if(phone == ""){
+            layer.msg('请输入手机号');
+            return false;
+        }
+        if($('input[name="password1"]').val() == $('input[name="password2"]').val()){
+            var password = $('input[name="password1"]').val();
+        }else{
+            layer.msg('两次密码不一致');
+            return false;
+        }
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            layer.msg('手机号非法');
+            return false;
+        }
+
+        $.ajax({
+            url: "{:url('Admin/add')}",
+            data:{
+                "name": name,
+                "password": password,
+                "phone": phone,
+                "manage_school": manage_school,
+                "sex": sex
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (res) {
+                console.log("回来啦");
+                console.log(res);
+                if (res.code == 10000) {
+                    if(res.msg != '') layer.msg(res.msg);
+                    setTimeout(function () {
+                        window.location.href = '{:url("Admin/index")}'
+                    }, 2000);
+                } else {
+                    layer.msg(res.msg);
+                }
+            },
+            err: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
+    $(function () {
+        // 普管不允许新增管理员，防止通过输入路径进入此页面
+        if($("#op").val() != 1){
+            layer.msg('无此权限！');
+            history.back(-1);
+        }
+        $(".setting").addClass("active");
+        $(".setting ul").addClass("in");
+    });
+
+    // 下拉列表点击选项触发的函数
+    function shows(text) {
+        // 分割a标签text文本内容 -> id name
+        var strArray = text.split(' | ')
+        // 显示内容 name
+        $('.buttonText').text(strArray[1]);
+        // 选择管理区域 id
+        $('input[name="manage_school"]').val(strArray[0]);
+        if(strArray[2] != null){
+            layer.msg('该区域已存在管理员：' + strArray[2])
+        }
+    }
+
+    // 点击性别修改项
+    function changeSex (s) {
+        // 点击checkbox将选择值赋给真实值
+        $('input[name="rel_sex"]').val(s)
+    }
+
+    $('.hh').on('click', function(event) {
+        event.preventDefault();
+        window.location.href=$(this).attr('data-href')
+
+    });
+
+</script>

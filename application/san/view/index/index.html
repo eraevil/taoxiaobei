@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+   
+     .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+    .hx{
+        /*width: 340px;*/
+       /*-webkit-line-clamp: 1;*/
+        /*overflow: hidden;*/
+        /*text-overflow: ellipsis;*/
+        /*display: -webkit-box;*/
+        /*white-space: nowrap;*/
+        /*!*white-space: nowrap;*!*/
+        /*!*overflow: hidden;*!*/
+        /*!*text-overflow: ellipsis;*!*/
+
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+</style>
+<div class="wrapper-content">
+    <!--今日数据-->
+    <div class="row" style="height: 50px;line-height: 50px;">
+        <div class="col-sm-6">
+            <h3 style="height: 50px;line-height: 50px;">最新数据</h3>
+        </div>
+    </div>
+    <div class="todaysData whitebg" style="padding: 50px 0;background: #fff">
+        <div class="dataWid">
+            <a href="http://qscx.siantest.com/san/institute/index.html">
+                <div class="indexItem indexItem2" style="background: #58A5EE">
+                    <div>
+                        <img src="__STATIC__/san/image/wenzhang.png" alt="" width="50" height="50">
+                    </div>
+                    <div style="text-align: left;">
+                        <p>一级商品</p>
+                        <h2>   {$category1}</h2>
+                    </div>
+                    <img src="__STATIC__/san/image/wenzhang2.png" alt="" class="bgPic">
+                </div>
+            </a>
+            <a href="http://qscx.siantest.com/san/researcher/index.html">
+                <div class="indexItem indexItem3" style="background: #FE7877">
+                    <div>
+                        <img src="__STATIC__/san/image/zuori.png" alt="" width="50" height="50">
+                    </div>
+                    <div style="text-align: left;">
+                        <p>研究员风采</p>
+                        <h2>456</h2>
+                    </div>
+                    <img src="__STATIC__/san/image/zuori2.png" alt="" class="bgPic">
+                </div>
+            </a>
+            <a href="http://qscx.siantest.com/san/handpick/index.html">
+                <div class="indexItem indexItem4" style="background: #fbb346">
+                    <div>
+                        <img src="__STATIC__/san/image/fangwen.png" alt="" width="50" height="50">
+                    </div>
+                    <div style="text-align: left;">
+                        <p>精选资讯</p>
+                        <h2>786</h2>
+                    </div>
+                    <img src="__STATIC__/san/image/fangwen2.png" alt="" class="bgPic">
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--公告列表-->
+    <div class="row">
+    <div class="noticeList">
+        <div class="col-sm-6">
+            <div class="row" style="height: 50px;line-height: 50px;padding-top: 20px">
+                <div class="col-sm-6">
+                    <h3 style="height: 50px;line-height: 50px;">最新文章</h3>
+                </div>
+                <!--<div class="col-sm-6 text-right">-->
+                    <!--&lt;!&ndash;<a href="{:url('content/index')}" class="font-s12  more" style="color: #999">查看更多></a>&ndash;&gt;-->
+                <!--</div>-->
+            </div>
+            <div class="admin-mt20">
+                <div class="ibox-content border0" style="margin-top: 0">
+                    <table class="table admin-mb0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
+                                <th  class="col-sm-6" style="border-bottom:0px !important">标题</th>
+                                <th class="col-sm-3" style="border-bottom:0px !important">发布时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!--{notempty name='$newest_content'}-->
+                        <!--{volist name='$newest_content' id='v'}-->
+                            <tr style="cursor: pointer;" class="hh" data-href="">
+                                <td style="height: 48px">001</td>
+                                <td class="hx" style="padding-top:14px;">
+                                    <p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                        群山渐归沧海
+                                    </p>
+                                </td>
+                                <td>2018.03.24</td>
+                            </tr>
+                        <!--{/volist}-->
+                        <!--{else}-->
+                            <!--搜索无结果-->
+                            <tr class="not_tr">
+                                <td colspan="5">
+                                    <div style="width: 100%;height:100%;margin-top: 100px;padding-bottom: 100px">
+                                        <img src="__STATIC__/san/image/nodat.png" alt=""  style="display: block;margin: 20px auto;width: 50px">
+                                        <p class="text-center" style="color: #d7d7d8">没有最新文章</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        <!--{/notempty}-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="noticeList">
+        <div class="col-sm-6">
+            <div class="row" style="height: 50px;line-height: 50px;padding-top: 20px">
+                <div class="col-sm-6">
+                    <h3 style="height: 50px;line-height: 50px;">热门文章</h3>
+                </div>
+                <!--<div class="col-sm-6 text-right">-->
+                    <!--&lt;!&ndash;<a href="{:url('content/index')}" class="font-s12  more" style="color: #999">查看更多></a>&ndash;&gt;-->
+                <!--</div>-->
+            </div>
+            <div class="admin-mt20">
+                <div class="ibox-content border0" style="margin-top: 0">
+                    <table class="table admin-mb0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
+                                <th class="col-sm-6" style="border-bottom:0px !important">标题</th>
+                                <th class="col-sm-2" style="border-bottom:0px !important">阅读</th>
+                                <th class="col-sm-3" style="border-bottom:0px !important">发布时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!--{notempty name='$hot_content'}-->
+                        <!--{volist name='$hot_content' id='vo'}-->
+                            <!--<tr style="cursor: pointer;" class="hh" data-href="{:url('Content/detail',['id'=>$vo.id])}">-->
+                                <!--<td style="height: 48px">{$vo.id}</td>-->
+                                <!--<td class="hx"  style="padding-top:14px;">-->
+                                    <!--<p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">-->
+                                        <!--{$vo.content_title}-->
+                                    <!--</p>-->
+                                <!--</td>-->
+                                <!--<td>{$vo.reading_number}</td>-->
+                                <!--<td>{$vo.ctime|@date='Y-m-d',###}</td>-->
+                            <!--</tr>-->
+                        <!--{/volist}-->
+                        <!--{else}-->
+                            <!--&lt;!&ndash;搜索无结果&ndash;&gt;-->
+                            <!--<tr class="not_tr">-->
+                                <!--<td colspan="5">-->
+                                    <!--<div style="width: 100%;height: 100%;margin-top: 100px;padding-bottom: 100px">-->
+                                        <!--<img src="__STATIC__/san/image/nodat.png" alt=""  style="display: block;margin: 20px auto;width: 50px">-->
+                                        <!--<p class="text-center" style="color: #d7d7d8">没有热门文章</p>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--{/notempty}-->
+                        <tr style="cursor: pointer;" class="hh" data-href="">
+                            <td style="height: 48px">001</td>
+                            <td class="hx" style="padding-top:14px;">
+                                <p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                    群山渐归沧海
+                                </p>
+                            </td>
+                            <td>2018.03.24</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{include file="public/footer"}
+</html>
+<script>
+    $(function () {
+        $(".index").addClass("active");
+        $(".index ul").addClass("in");
+    });
+
+    $('.hh').on('click', function(event) {
+        event.preventDefault();
+        window.location.href=$(this).attr('data-href')
+
+    });
+    
+</script>
