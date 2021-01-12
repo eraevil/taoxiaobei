@@ -112,15 +112,15 @@
 
 <div class="wrapper-content">
 
-    <div class="ibox-content m-t">
+    <div class="ibox-content m-t" >
         <p class="page-title">用户信息</p>
-        <div class="user-text">
+        <div class="user-text"  style="margin-bottom: 20px">
             <form method="post"  class="form-horizontal" style="padding-top: 50px">
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">用户编号</label>
                     <div class="col-sm-7">
-                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="id" value="{$user_info.user_num}">
                         <input type="text" value="TXB20191116185702431" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
                     </div>
                 </div>
@@ -128,64 +128,87 @@
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">昵称</label>
                     <div class="col-sm-7">
-                        <input type="text" value="lisheng" disabled="disabled" name="nick_name" class="form-control disabled_flag"  >
+                        <input type="text" value="{$user_info.nick_name}" disabled="disabled" name="nick_name" class="form-control disabled_flag"  >
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">性别</label>
                     <div class="col-sm-7">
+                        {if condition="$user_info.user_sex eq 1"}
                         <input type="text" value="男" disabled="disabled" name="user_sex" class="form-control disabled_flag"  >
+                        {/if}
+                        {if condition="$user_info.user_sex eq 2"}
+                        <input type="text" value="女" disabled="disabled" name="user_sex" class="form-control disabled_flag"  >
+                        {/if}
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">生日</label>
                     <div class="col-sm-7">
-                        <input type="text" value="1999年03月25日" disabled="disabled" name="user_birth" class="form-control disabled_flag"  >
+                        {if condition="$user_info.user_birth neq null"}
+                        <input type="text" value="{$user_info.user_birth|@date="Y年m月d日",###}" disabled="disabled" name="user_birth" class="form-control disabled_flag"  >
+                        {/if}
+
+                        {if condition="$user_info.user_birth eq null"}
+                        <input type="text" value="====保密信息====" disabled="disabled" name="user_birth" class="form-control disabled_flag"  >
+                        {/if}
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-7">
-                        <input type="text" value="18383086596" disabled="disabled" name="user_phone" class="form-control disabled_flag"  >
+                        {if condition="$user_info.user_phone neq null"}
+                        <input type="text" value="{$user_info.user_phone}" disabled="disabled" name="user_phone" class="form-control disabled_flag"  >
+                        {/if}
+                        {if condition="$user_info.user_phone eq null"}
+                        <input type="text" value="====保密信息====" disabled="disabled" name="user_phone" class="form-control disabled_flag"  >
+                        {/if}
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">学校</label>
                     <div class="col-sm-7">
-                        <input type="text" value="电子科技大学成都学院" disabled="disabled" name="school_name" class="form-control disabled_flag"  >
+                        <input type="text" value="{$user_info.school_name}" disabled="disabled" name="school_name" class="form-control disabled_flag"  >
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">状态</label>
                     <div class="col-sm-7">
+                        {if condition="$user_info.trade_status eq 1"}
                         <input type="text" value="正常" disabled="disabled" name="trade_status" class="form-control disabled_flag"  >
+                        {/if}
+
+                        {if condition="$user_info.trade_status eq 2"}
+                        <input type="text" value="禁用" disabled="disabled" name="trade_status" class="form-control disabled_flag"  >
+                        {/if}
                     </div>
                 </div>
 
                 <div class="form-group  ">
                     <label class="col-sm-2 control-label">注册时间</label>
                     <div class="col-sm-7">
-                        <input type="text" value="2019年05月24日" disabled="disabled" name="add_time" class="form-control disabled_flag"  >
+                        <input type="text" value="{$user_info.add_time|@date="Y年m月d日",###}" disabled="disabled" name="add_time" class="form-control disabled_flag"  >
                     </div>
                 </div>
             </form>
         </div>
 
         <div style="margin-left: 690px; margin-top: 50px">
-            <img class="headimg" width="240px" height="240px" src="__SAN__/image/pkq.jpeg"  alt="headimg"/>
+            <img class="headimg" width="240px" height="240px" src="{$user_info.user_headimg}"  alt="headimg"/>
         </div>
 
 
-        <div style="width: 400px; display: inline-block; margin-top: 20px">
+        <div style="width: 400px; height: 105px; display: inline-block; margin-top: 20px">
             <strong>简&nbsp;&nbsp;介</strong>
             <hr/>
-            <p>每个时代都有每个时代的精神。我曾经讲过，实现中国梦必须走中国道路、弘扬中国精神、凝聚中国力量。核心价值观是一个民族赖以维系的精神纽带，是一个国家共同的思想道德基础。精神特质、精神脉络。(限100字内)</p>
+            <p>{$user_info.user_intro}</p>
         </div>
+
 
 
         <div class="" style="margin-top: 0; margin-top: 50px;">
@@ -201,34 +224,45 @@
                     <th class="col-sm-1" style="border-bottom:0px !important">详情</th>
                 </tr>
                 </thead>
-
+                {if condition="$goods_num neq 0"}
                 <tbody>
+                    {volist name="$goods_info" id="vo" key="key"}
                     <tr style="cursor: pointer;" class="hh" data-href="">
-                        <td>SP201810080214</td>
-                        <td>淘小北校园二手交易平台运营手册</td>
-                        <td>二手书籍</td>
-                        <td>￥20.00</td>
-                        <td>未售</td>
+                        <td>{$vo.goods_num}</td>
+                        <td title="{$vo.goods_title}">{$vo.goods_title}</td>
+                        <td>{$vo.title}</td>
+                        <td>￥{$vo.price}</td>
+                        {if condition="$vo.goods_status eq 0"}
+                            <td>未审核</td>
+                        {/if}
+                        {if condition="$vo.goods_status eq 1"}
+                            <td>未售</td>
+                        {/if}
+                        {if condition="$vo.goods_status eq 2"}
+                            <td>已下单</td>
+                        {/if}
+                        {if condition="$vo.goods_status eq 3"}
+                            <td>已支付</td>
+                        {/if}
+                        {if condition="$vo.goods_status eq 4"}
+                            <td>交易完成</td>
+                        {/if}
+                        {if condition="$vo.goods_status eq -1"}
+                            <td>异常</td>
+                        {/if}
                         <td>
                             <a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>
                         </td>
                     </tr>
-
-                    <tr style="cursor: pointer;" class="hh" data-href="">
-                        <td>SP201911280201</td>
-                        <td>超值非常棒海宁潮流新款真皮皮衣男士绵阳短款</td>
-                        <td>服装配饰</td>
-                        <td>￥168.00</td>
-                        <td>未售</td>
-                        <td>
-                            <a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>
-                        </td>
-                    </tr>
-
+                {/volist}
                 </tbody>
+                {/if}
             </table>
-            <div style="text-align: center"></div>
+            {if condition="$goods_num neq 0"}
+            <div style="text-align: center">{$goods_info->render()}</div>
+            {/if}
         </div>
+
 
     </div>
 

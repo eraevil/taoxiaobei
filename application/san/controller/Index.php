@@ -18,4 +18,5 @@ class Index extends Common
 //        return view('',['news1'=>$news1,'news2'=>$news2,'handpick'=>$handpick,'newest_content'=>$newest_content,'hot_content'=>$hot_content]);
         return view('',['category1' => $category1]);
     }
+
 }

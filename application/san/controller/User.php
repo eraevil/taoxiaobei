@@ -25,7 +25,26 @@ class User extends Common
 
     public function details()
     {
-        return view('User/details',[]);
+        $id = input('id');
+
+        $user_info = db('user')
+            ->alias('a')
+            ->join('school b','a.school_id = b.school_id')
+            ->where('user_id','=',$id)
+            ->field('user_num,nick_name,user_sex,user_birth,user_phone,school_name,trade_status,add_time,user_headimg,user_intro')
+            ->find();
+
+        $goods_info = db('goods')
+            ->alias('a')
+            ->join('category_01 b','a.category_id = b.id')
+            ->where('user_id','=',$id)
+            ->field('goods_id,goods_num,goods_title,b.title,price,goods_status')
+            ->paginate(30);
+
+        $goods_num = $goods_info->count();
+
+
+        return view('User/details',['user_info' => $user_info, 'goods_info' => $goods_info, 'goods_num' => $goods_num]);
     }
 
 

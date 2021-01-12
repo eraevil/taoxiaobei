@@ -1,0 +1,20 @@
+
+<!--
+    请忽略该文件，测试用
+
+    初始化测试数据-用户数据 action值： {:url('Common/init_user_list')}
+    初始化测试数据-商品数据 action值： {:url('Common/init_goods_list')}
+-->
+<form action="{:url('Common/init_goods_list')}" method="post" enctype="multipart/form-data">
+    <h2>Excel导入</h2>
+    <table>
+        <tr>
+            <td>
+                <input type="file" name="excel">
+            </td>
+            <td>
+                <input type="submit">
+            </td>
+        </tr>
+    </table>
+</form>
