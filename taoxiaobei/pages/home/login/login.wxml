@@ -1,0 +1,18 @@
+<!--pages/home/auth.wxml-->
+<view id="container">
+  <view class="logo-box">
+    <view class="left">
+      <image class="logo-img" src="/images/login/logofz.png" ></image>
+    </view>
+    <view class="right">
+      <view class="name-top"><text>淘小北</text></view>
+      <view id="name-bot">
+        <text>校园二手交易平台</text>
+      </view>
+    </view>
+  </view>
+  
+  <button wx:if="{{canIUse}}" bindtap="bindGetUserInfo"><text  style="font-family: 'Microsoft YaHei UI';">授权登录</text></button>
+  <view wx:else>请升级微信版本</view>
+
+</view>

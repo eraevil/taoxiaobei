@@ -1,0 +1,53 @@
+page{
+  height: 100%;
+  /* background-color: #f7f7f7; */
+}
+.category{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  height:100%;
+}
+
+.nav_left{
+  background-color: #f8f8f8;
+  width: 30%;
+  /* height: 100%; */
+  white-space: nowrap;
+  /* font-weight: 600; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav_left text{
+  font-size: 34rpx;
+}
+
+.nav_right{
+  width: 70%;
+  height: 100%;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.nav_left_items{
+  font-size: 34rpx;
+  color: #333;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.nav_left_items-active{
+  background: #fff;
+  color: red;
+}
+
+/* navRight */
+.product-item{
+  width: 80%;
+  margin-left: 10%;
+}

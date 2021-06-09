@@ -1,0 +1,243 @@
+/* pages/me/trade/tradedetail/tradedetail.wxss */
+.container{
+  margin-top: 30rpx;
+}
+
+.outbox{
+  border-left: 1rpx #ddd solid;
+  margin-left: 50rpx;
+}
+
+
+
+.inbox{
+  /* height: 80%; */
+  width: 89%;
+  margin-left: 40rpx;
+  margin-bottom: 50rpx;
+  padding-bottom: 20rpx;
+  /* margin-top: 30rpx; */
+  background: rgb(242, 242, 242);
+  border-radius: 5rpx 5rpx;
+}
+
+.inbox view{
+  margin-left: 20rpx;
+  line-height: 42rpx;
+}
+
+.small-icon{
+  /* background: #000; */
+  width: 30rpx;
+  height: 30rpx;
+  float: left;
+  position: relative;
+  right: 18rpx;
+  bottom: 5rpx;
+}
+
+.small-icon image{
+  background: #fff;
+  width: 30rpx;
+  height: 30rpx;
+}
+/* 文本格式 */
+.name{
+  padding-top: 20rpx;
+}
+.boldtext{
+  width: 100%;
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+}
+.redtext{
+  color: red;
+}
+.smalltext{
+  font-size: 26rpx;
+  color: #888
+}
+
+.goodsInfo{
+  height: 380rpx;
+  /* background: #529900; */
+}
+
+.creatOrder{
+  height: 290rpx;
+}
+
+.payed{
+  height: 240rpx;
+}
+
+.over{
+  border-left: 1rpx #fff solid;
+}
+
+/* 按钮 */
+.button{
+  margin: 0;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+#paybutton{
+  margin-left: 30rpx;
+}
+
+#cancelbutton{
+  background-color: #FFA500;
+  color:white;
+}
+
+#cancelbutton:hover{
+  background-color: #ccc;
+  color:white;
+}
+
+#cancelbutton[disabled]{
+  background-color: white;
+  color: #ccc;
+}
+
+/* 弹出框 */
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);   /*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  bottom: 520rpx;
+  width: 650rpx;    /*弹窗布局宽*/
+  height: 370rpx;   /*弹窗布局高，与下面弹出距离transform有关*/
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(400%);  /*弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 3px 2px gainsboro;  /*弹框的悬浮阴影效果，如不需要可注释该行*/
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+
+.td{
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 50rpx;
+  background: white;
+  border: 1rpx #ddd solid;
+  margin-left: 23rpx;
+}
+
+/* 确认支付按钮 */
+.finish{
+  /* width: 100%; */
+  /* height: 100rpx; */
+  /* float: left; */
+  /* text-align: center; */
+  /* border: 1rpx #000 solid; */
+}
+
+.finish button{
+  position: relative;
+  /* top: 80rpx; */
+  left: 230rpx;
+  bottom: 60rpx;
+}
+
+/* 支付密码css start */
+/* .bg_layer{
+  position: fixed; left: 0; top: 0; bottom: 0; right: 0;
+  background-color: rgba(0, 0, 0, 0.6); z-index: 9998;
+  border: 1rpx #000 solid;
+} */
+.input_main{
+  position: fixed; left: 0; bottom: 500rpx; width: 100%; height: 394rpx;
+  background-color: #fff; z-index: 9999;
+}
+.input_title{
+  width: 100%; height: 90rpx; line-height: 90rpx; text-align: center; 
+  font-size: 32rpx; border-bottom: 1rpx solid #e2e2e2;
+  border: 1rpx #000 solid;
+}
+.input_back{
+  position: absolute; left: 0; top: 0;
+  width: 80rpx; height: 90rpx; display: flex; justify-content: center; align-items: center;
+  border: 1rpx #000 solid;
+}
+.input_back text{
+width: 20rpx;
+height: 20rpx;
+background-color: white;
+border: 1rpx solid #aaa;
+border-width: 5rpx 0 0 5rpx;
+transform: rotate(-45deg);
+}
+
+.input_tip{  margin: 30rpx; font-size: 24rpx; color: #888; }
+
+/* 密码掩码模拟 */
+.input_row{
+width: 540rpx; 
+margin: 0 auto; 
+height: 90rpx; 
+position: relative;
+display: flex; 
+align-items: center; 
+border: 1rpx solid #e2e2e2; 
+border-radius: 20rpx;
+}
+.input_row .pwd_item{
+flex: 1; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+height: 100%; 
+border-right: 1rpx solid #e2e2e2; 
+position: relative;
+}
+.pwd_item:nth-last-of-type(1) { border-right: 0; } 
+.pwd_item text { 
+width: 30rpx; 
+height: 30rpx; 
+border-radius: 30rpx; 
+background-color: #555;
+}
+
+
+.forget_pwd{ 
+float: right; margin: 30rpx; width: 100rpx; text-align: right; font-size: 24rpx; color: #ff7800;
+}
+
+/* 文本输入框位置: 设置到左边隐藏 */
+.input_control { 
+position: relative; left: -300rpx; bottom: 0; width: 100rpx; height: 100rpx;
+}
+
+/* 修改密码 */
+.update_pwd{
+font-size: 24rpx; color: #888;
+margin-top: 30rpx;
+margin-right: 30rpx;
+text-decoration: underline;
+}
+
+
+
+

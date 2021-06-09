@@ -1,0 +1,8 @@
+<!--components/pay/pay.wxml-->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+  <view class="zan-dialog__mask" bindtap="toggleDialog" />
+  <view class="zan-dialog__container">
+    <view style='padding:100rpx;'>此处是填充的布局代码</view>
+  </view>
+</view>

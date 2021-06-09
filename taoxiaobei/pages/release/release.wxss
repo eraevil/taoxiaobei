@@ -1,0 +1,193 @@
+/* pages/release/release.wxss */
+
+page{
+  background-color: #f8f8f8;
+}
+
+.productInfo{
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+}
+
+/* 信息项的通用属性 */
+.box{
+  margin-bottom: 25rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.label{
+  width: 20%;
+  font-size: 30rpx;
+  display: inline-block;
+  line-height: 78rpx;
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+  font-weight: 600;
+  text-align: right;
+  padding-right: 20rpx;
+}
+
+.input{
+  display: inline-table;
+  width: 70%;
+  margin-top: 15rpx;
+}
+
+input{
+  width: 100%;
+  height: 70rpx;
+  padding: 0 10rpx;
+  line-height: 70rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+  /* border-top: 10rpx solid #999; */
+}
+
+/* textarea{
+  width: 600rpx;
+  height: 400rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 6rpx;
+} */
+
+/* 头信息 */
+.hint{
+  width: 300rpx;
+  /* height: 80rpx; */
+  /* text-align: center; */
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  color: #333333;
+  /* font-weight: bold; */
+  font-size: 36rpx;
+  font-family: 'Microsoft YaHei UI';
+  /* border: 2rpx black solid; */
+}
+.hintImgBox{
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+}
+.hintImg{
+  width: 80rpx;
+  height: 80rpx;
+}
+.hintText{
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+  left: 90rpx;
+  display: inline-block;
+}
+
+  .price .label{
+    /* float: left; */
+    margin-top: 10rpx;
+  }
+
+ .price .input{
+   /* position: absolute; */
+   width: 65%;
+   /* float: left; */
+ }
+
+ /* 描述 */
+ .intro{
+   height: 420rpx;
+   line-height: 40rpx;
+ }
+
+
+ /* 文本框样式 */
+ .f{
+    display: flex;
+  }
+  .f-end{
+    justify-content: flex-end;
+  }
+  .text-count-display{
+    padding: 2%;
+    /* height: 90%; */
+  }
+  .textarea-count {
+    width: 70%;
+    display: inline-block;
+    position: absolute;
+    margin-top:21rpx;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+ .textarea-count textarea{
+    padding-left: 10rpx;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    position: relative;
+    width: 100%;
+   /* height: 90%; */
+  }
+
+  /* 商品封面 */
+  .productImg{
+    height: 540rpx;
+  }
+
+  .productImg .label {
+    float: left;
+    /* border: 2rpx black solid; */
+
+  }
+
+  .productImg .input {
+    float: left;
+    width: 70%;
+    position: absolute;
+    /* border: 2rpx black solid; */
+
+  }
+
+  .button{
+    background: #1296db;
+    font-weight: 550;
+    color: white;
+    font-size: 32rpx;
+  }
+
+  .productImg image{
+    width: 380rpx;
+    height: 380rpx;
+    /* border: 2rpx black solid; */
+    /* background: #ddd;
+    box-shadow: 0 0 20rpx 5rpx #ddd; */
+    border: 1px solid #ddd;
+    border-radius: 5rpx 5rpx 5rpx 5rpx;
+  }
+
+  .coverImg{
+    position: relative;
+    /* top: 10rpx; */
+  }
+
+  /* 用户许可 */
+  .permission{
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 20rpx;
+    font-size: 26rpx;
+    margin-bottom: 70rpx;
+  }
+  .span1{
+    color: #1296db;
+  }
+  .span2{
+    text-decoration-line: underline;
+  }
+  .permission checkbox{
+    transform: scale(0.7,0.7);
+  }
+  /* 提交 */
+  .submit{
+    width: 100%;
+    height: 300rpx;
+  }

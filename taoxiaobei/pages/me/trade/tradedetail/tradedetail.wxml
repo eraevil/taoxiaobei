@@ -1,0 +1,102 @@
+<!--pages/me/trade/tradedetail/tradedetail.wxml-->
+<view class="container">
+
+  <view class="outbox goodsInfo">
+    <view class="small-icon"><image src="/images/checkok.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">{{tradeInfo.nick_name}}</view>
+      <view class="boldtext">于 {{tradeInfo.goods_time}} 上传该商品</view>
+      <view>编号为：{{tradeInfo.goods_num}}</view>
+      <view class="thintext">商品名：{{tradeInfo.goods_title}}</view>
+      <view class="thintext"><span style="letter-spacing:14rpx">价 </span>格： ￥{{tradeInfo.price}}</view>
+    </view>
+  </view>
+
+  <view class="outbox creatOrder">
+    <view class="small-icon"><image src="/images/moreop.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">{{tradeInfo.buyer}}</view>
+      <view class="boldtext">于 {{tradeInfo.trade_time}} 创建此订单</view>
+      <view class="button">
+        <button size="mini" type="warn" disabled="{{canCancel}}" bindtap="toCancel" id="cancelbutton">取消</button>
+        <button size="mini" type="primary" disabled="{{canPay}}" bindtap="toPay" id="paybutton">支付</button>        
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="outbox payed" wx:if="{{tradeInfo.trade_status != 0 && tradeInfo.trade_status != 3}}">
+    <view class="small-icon"><image src="/images/checkok.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">{{tradeInfo.buyer}}</view>
+      <view class="boldtext">于 {{tradeInfo.pay_time}} 完成支付</view>
+      <view>资金已进入平台进行托管</view>
+      <view class="smalltext">(本次交易将会收取交易金额的1%作为手续费)</view>
+    </view>
+  </view>
+
+  <view class="outbox message" wx:if="{{tradeInfo.trade_status != 0 && tradeInfo.trade_status != 3}}">
+    <view class="small-icon"><image src="/images/warninginfo.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">淘小北已收到交易申请</view>
+      <view class="boldtext">请按照以下信息完成交易：</view>
+      <view class="name redtext">收货用户：{{tradeInfo.consignee_name}}</view>
+      <view class="redtext">联系电话：{{tradeInfo.consignee_phone}}</view>
+      <view class="redtext">
+        <text>交易地点：</text>
+        <view style="margin-right: 15rpx;">{{tradeInfo.consignee_address}}</view>
+      </view>
+      <view class="redtext">
+        <span style="letter-spacing:64rpx">备</span>注：
+        <view style="margin-right: 15rpx;">{{tradeInfo.consignee_remark}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="outbox getGoods" wx:if="{{tradeInfo.trade_status != 0 && tradeInfo.trade_status != 3}}">
+    <view class="small-icon"><image src="/images/moreop.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">请点击下面的按钮完成收货</view>
+      <view class="boldtext">交易资金将会自动转入卖家账户</view>
+      <view class="button"><button size="mini" type="primary" bindtap="tofinishTrade" disabled="{{canFinish}}">收货</button></view>
+    </view>
+  </view>
+    
+  <view class="outbox over" wx:if="{{tradeInfo.trade_status == 2}}">
+    <view class="small-icon"><image src="/images/checkok.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">交易已完成，感谢您使用淘小北二手平台</view>
+      <view class="boldtext">我们将继续为您服务！</view>
+    </view>
+  </view>
+
+  <view class="outbox over" wx:if="{{tradeInfo.trade_status == 3}}">
+    <view class="small-icon"><image src="/images/checkok.png"></image></view>
+    <view class="inbox">
+      <view class="boldtext name">交易已取消，感谢您使用淘小北二手平台</view>
+      <view class="boldtext">我们将继续为您服务！</view>
+    </view>
+  </view>
+
+  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+    <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+    <view class="zan-dialog__mask" bindtap="toggleDialog" />
+    <view class="zan-dialog__container">
+      <view>
+          <view class='input_tip'><text>请输入支付密码：</text></view>
+          <view class='input_row' catchtap='getFocus'>
+              <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+                  <text wx:if='{{pwdVal.length>i}}'></text>
+              </view>
+          </view>
+          <view class='update_pwd' style="text-align: right"><text>修改密码</text></view>
+          <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' value='{{pwdVal}}' maxlength='6'/>
+          
+        <view class="finish"><button type="primary" size="mini" bindtap="finish">确认支付</button></view>
+      </view>
+    </view>
+  </view>
+  
+
+
+</view>

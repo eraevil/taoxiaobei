@@ -1,0 +1,81 @@
+<!--pages/release/release.wxml-->
+<view class="container">
+  <form>
+    <view class="productInfo">
+      <view class="hint">
+        <view class="hintImgBox"><image src="/images/write.png" class="hintImg"></image></view>
+        <view class="hintText"><text>商品信息</text></view>
+      </view>
+      <view class="title box">
+        <view class="label">标题</view>
+        <view class="input"><input placeholder="请键入商品标题" bindblur="getTitle" value="{{title}}"/></view>
+      </view>
+
+      <view class="category box">
+        <view class="label">商品类别</view>
+        <view class="input" bindtap="close_category">
+          <view class="select-wrap">
+            <select id="select_category" wx:if="{{showSelected_category}}" options="{{options}}" key="id" text="title" bind:change="change_category"></select>
+          </view>
+        </view>
+      </view>
+
+      <view class="price box">
+        <view class="label">价格</view>
+        <view class="input">
+          <input type="digit" placeholder="请输入价格" value="{{price}}" bindinput="priceInput" />
+        </view>
+        元
+      </view>
+
+      <view class="intro box">
+        <view class="label">描述</view>
+        <view class='textarea-count'>
+          <textarea placeholder="特点、款式、使用情况、损耗、交易条件等" adjust-position bindinput="getWords" maxlength='{{maxTextLen}}'></textarea>
+          <view class='text-count-display f f-end introText'>{{textLen}}/{{maxTextLen}}</view>
+        </view>
+      </view>
+
+      <view class="keywords box">
+        <view class="label">关键词</view>
+        <view class="input"><input placeholder="分号隔开，如：书籍；小说；游记" value="{{key_words}}" bindblur="getKeyWords"/></view>
+      </view>
+
+      <view class="old_new_grade box">
+        <view class="label">新旧程度</view>
+        <view class="input" bindtap="close">
+          <view class="select-wrap">
+            <select id="select_grade" options="{{old_new_grade}}" key="id" text="value" bind:change="change_grade" bindtap="check"></select>
+          </view>
+        </view>
+      </view>
+
+      <view class="productImg box">
+        <view class="label">封面图片</view>
+        <view class="input">
+          <button size="mini" class="button" bindtap='chooseImageTap'>上传图片</button>
+          <view class="coverImg"><image src="{{picPaths}}" mode="aspectFill"></image></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="permission">
+      <label class="checkbox">
+        <checkbox-group  bindchange="changeBox">
+          <checkbox checked="{{checked}}" value="1" />我已阅读<span class="span1">《<span class="span2">淘小北校园二手交易平台用户条约</span>》</span>，并同意相关条款。
+        </checkbox-group>  
+      </label>
+    </view>
+
+    <view class="submit">
+      <button  type="primary" bindtap='upGoods' disabled="{{banClick}}">发布</button>
+    </view>
+
+  </form>
+  
+
+
+
+
+
+</view>

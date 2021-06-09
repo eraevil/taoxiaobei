@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/home/login/login",
+    "pages/home/goods/category/category",
+    "pages/home/index",
+    "pages/home/search/search",
+    "pages/home/goods/goodsdetail/goodsdetail",
+    "pages/home/goods/purchase/affirm/affirm",
+    "pages/release/index",
+    "pages/release/release",
+    "pages/me/index",
+    "components/pay/pay",
+    "pages/me/trade/consignee/consignee",
+    "pages/me/trade/recharge/recharge",
+    "pages/me/protrol/use/use",
+    "pages/me/goods/goodslist",
+    "pages/me/trade/tradelist/tradelist",
+    "pages/me/trade/tradedetail/tradedetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "淘小北校园二手交易平台",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#959394",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/release/index",
+        "iconPath": "images/release.png",
+        "selectedIconPath": "images/release.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

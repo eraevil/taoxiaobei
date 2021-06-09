@@ -1,0 +1,42 @@
+<!--pages/me/trade/recharge/recharge.wxml-->
+<view class="container">
+
+  <view class="money_box">
+    <view class="left img"><image src="{{userInfo.user_headimg}}"></image></view>
+    <view class="right text">
+      <view class="name">{{userInfo.nick_name}}</view>
+      <view class="number">余额：{{userInfo.money}} 元</view>
+    </view>
+  </view>
+
+  <view class="record_box">
+    <view class="admin">
+      <view class="admin_qr">
+        <image src="{{admin_qr}}" bindtap="preview"></image>
+        <view class="admin_wechat">
+          <view><text>请联系您的专属客服进行充值</text></view>
+          <view><text>微信号：{{admin_name}}</text></view>
+          <view><text>点击复制以下信息发送给客服：</text></view>
+          <view><text bindtap='copyText'>{{userInfo.user_num}}</text></view>      
+        </view>
+      </view>
+
+      
+    </view>
+
+    <view class="table">
+      <view class="title">充值记录</view>
+      <view class="th">
+        <view class="table_left">时间</view>
+        <view class="table_center">金额</view>
+        <view class="table_right">经办人</view>
+      </view>
+      <view class="tr" wx:for="{{recharge}}" wx:key="key">
+        <view class="table_left">{{item.add_time}}</view>
+        <view class="table_center">+{{item.re_money}}</view>
+        <view class="table_right">{{item.admin_name}}</view>
+      </view>
+    </view>
+  </view>
+
+</view>

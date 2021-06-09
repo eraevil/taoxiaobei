@@ -1,0 +1,171 @@
+/* pages/home/goodsdetail.wxss */
+/* 发布者信息 */
+.userInfo{
+  box-shadow:2rpx 0rpx 3rpx 0px #DDDDDD;
+}
+
+.userBox-left{
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: inline-block;
+ 
+}
+.userBox-right{
+  margin-bottom: 20rpx;
+  margin-left: 25rpx;
+  display: inline-block;
+}
+
+.userBox-right .top{
+  font-size: 28rpx;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+}
+.userBox-right .bottom{
+  font-size: 24rpx;
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+  color: #cbc8c7;
+}
+
+.userImg{
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 50% 50% 50% 50%;
+}
+
+/* 价格 */
+.price{
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+  margin-left: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color:red;
+  margin-top: 10rpx;
+  margin-bottom: 15rpx;
+}
+
+/* 标题 */
+.title{
+  margin-left: 40rpx;
+  margin-right: 20rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+/* 简介 */
+.intro{
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  text-align:justify;
+  text-indent: 56rpx;
+  margin-right: 40rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* 封面图片 */
+.img{
+  margin-left: 10%;
+  margin-top: 20rpx;
+  margin-bottom: 130rpx;
+}
+
+.img image{
+  width: 90%;
+  border-radius: 15rpx;
+}
+
+/* 操作栏 */
+.operate{
+  /* background: #c0c0c0; */
+  background-color: #fff;
+  position: fixed;
+  bottom:0;
+  width: 750rpx;
+  height: 110rpx;
+  box-shadow:2rpx 0rpx 4rpx 0px #DDDDDD;
+}
+
+.operate button{
+  /* width:200rpx; */
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-top: 25rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 545;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.feedback{
+  background-color: #FFA500;
+  width: 40rpx;
+  margin-left: 20rpx;
+  float: left;  
+}
+
+.feedback:active{
+  background-color: #f2ce2b;
+}
+
+.communicate{
+  float: right;
+}
+
+.pay{
+  background-color: red;
+  font-size: 30rpx;
+  text-align: center;
+  float: right;
+  margin-right: 20rpx;
+}
+
+.pay:active{
+  background-color: #c04851;
+}
+
+/* 评分 */
+.stars{
+  padding:30rpx 0 30rpx 40rpx;
+  /* box-sizing: border-box; */
+  position: relative;
+  /* border-bottom: 1rpx solid #ececec; */
+
+  margin-bottom: 200rpx;
+}
+.stars .content view{
+  font-size: 32rpx;
+  color: #4a4a4a;
+}
+.stars .content>view:last-of-type{
+  height: 40rpx;
+  margin-top: 25rpx;
+}
+.stars .content>view:last-of-type view{
+  float: left;
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 25rpx;
+  background-size: 100% 100%;
+}
+
+/* .starbox{
+  width: 200rpx;
+  height: 200rpx;
+  border: 1rpx solid #ddd;
+} */
+.imgstar{
+  width: 50rpx;
+  height: 50rpx;
+}
+.textbox{
+  width: 100%;
+  margin-top: 20rpx;
+
+  font-size: 24rpx;
+  color: #888;
+
+  float: left;
+}

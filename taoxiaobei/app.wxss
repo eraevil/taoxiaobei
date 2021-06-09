@@ -1,0 +1,120 @@
+/**app.wxss**/
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+@import "/style/font.wxss";
+@import "/components/select/select.wxss";
+
+page{
+  /* background-color: #f7f7f7; */
+  /* font-family: 'Microsoft YaHei UI' !important;   */
+  /* font-family: 'STXingkai' !important; */
+  font-family: 'Times New Roman', Times, serif;
+}
+.container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+
+  /* font-family: 'Microsoft YaHei UI' !important; */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* 商品列表 */
+.product-list{
+  margin-top: 5rpx;
+  width: 92%; 
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+}
+
+.product-item{
+  margin-top: 30rpx;
+  background-color: #FFFFFF;
+  height: 560rpx;
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 10rpx;
+  box-shadow:1px 2rpx 3rpx 2rpx #888888;
+}
+.product-img{
+  width: 100%;
+  height: 56%;
+}
+.product-img image {
+  height: 100%;
+  width: 100%;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+}
+
+.product-title{
+  margin-left: 10rpx; 
+  margin-top: 10rpx; 
+  letter-spacing: 2rpx;
+  height: 13%;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 28rpx;
+  line-height: 40rpx;
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-price{
+  padding-left: 10rpx; 
+  height: 7%;
+  width: 100%;
+  /* background: greenyellow; */
+  font-size: 28rpx;
+  color: red;
+  border-bottom: 3rpx dashed #a7a8a8; 
+  padding-bottom: 3rpx; 
+  margin-bottom: 5rpx;
+}
+
+.user-info{
+  margin-left: 10rpx; 
+  margin-top: 15rpx; 
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  width: 100%;
+}
+
+.user-img{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+}
+
+.user-name{
+  margin-left: 10rpx;
+  font-size: 20prx; 
+  letter-spacing: 2rpx;
+}
+
+.msg{
+  margin-top: 22rpx;
+  width: 100%;
+  height: 80rpx;
+  text-align: center;
+}

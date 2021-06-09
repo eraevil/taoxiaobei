@@ -1,0 +1,108 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/home/login/login",
+          "pathName": "pages/home/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/goods/goodsdetail/goodsdetail",
+          "pathName": "pages/home/goods/goodsdetail/goodsdetail",
+          "query": "id=1953",
+          "scene": null
+        },
+        {
+          "name": "pages/home/category",
+          "pathName": "pages/home/category",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/release/index",
+          "pathName": "pages/release/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/release/release",
+          "pathName": "pages/release/release",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/index",
+          "pathName": "pages/me/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/goods/purchase/affirm/affirm",
+          "pathName": "pages/home/goods/purchase/affirm/affirm",
+          "query": "id=1865",
+          "scene": null
+        },
+        {
+          "name": "components/pay/pay",
+          "pathName": "components/pay/pay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/trade/consignee/consignee",
+          "pathName": "pages/me/trade/consignee/consignee",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/trade/recharge/recharge",
+          "pathName": "pages/me/trade/recharge/recharge",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/protrol/use/use",
+          "pathName": "pages/me/protrol/use/use",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/goods/goodslist",
+          "pathName": "pages/me/goods/goodslist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/me/trade/tradedetail/tradedetail",
+          "pathName": "pages/me/trade/tradedetail/tradedetail",
+          "query": "id=24",
+          "scene": null
+        },
+        {
+          "name": "pages/me/trade/tradelist/tradelist",
+          "pathName": "pages/me/trade/tradelist/tradelist",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

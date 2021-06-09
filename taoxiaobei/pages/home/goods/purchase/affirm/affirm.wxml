@@ -1,0 +1,61 @@
+<!--pages/home/purchase/affirm.wxml-->
+<view class="container">
+  <view class="product-info">
+    <view class="box">
+      <view class="name-box">
+        <view class="name-img"><image src="{{productInfo.userImage}}"></image></view>
+        <view class="user_name"><text>{{productInfo.userName}}</text></view>
+      </view>
+      <view class="product">
+        <view><image src="{{productInfo.image}}" mode="aspectFill"></image></view>
+        <view class="product-box">
+          <view class="title"><text>{{productInfo.title}}</text></view>
+          <view class="price">￥ <text>{{productInfo.price}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="address-info"  bindtap="toConsignee">
+    <view class="box adbox">
+      <view class="left">
+        <view><image src="/images/address.png"></image></view>
+      </view>
+      <view class="center">
+        <view wx:if="{{consignee_status}}">
+          <view class="name ad"><text>{{consignee_name}}</text></view>
+          <view class="phone ad"><text>{{consignee_phone}}</text></view>
+          <view class="address ad"><text>{{consignee_address}}</text></view>
+          <view class="remark ad"><text>{{consignee_remark}}</text></view>
+        </view>
+        <view wx:if="{{!consignee_status}}">
+          <view class="name" style="color: red; margin: 75rpx"><text>请维护收货信息！</text></view>
+        </view>
+      </view>
+      <view class="right"><view><image src="/images/right.png"></image></view></view>
+    </view>
+  </view>
+
+  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+    <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+    <view class="zan-dialog__mask" bindtap="toggleDialog" />
+    <view class="zan-dialog__container">
+      <view>
+          <view class='input_tip'><text>请输入支付密码：</text></view>
+          <view class='input_row' catchtap='getFocus'>
+              <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+                  <text wx:if='{{pwdVal.length>i}}'></text>
+              </view>
+          </view>
+          <view class='update_pwd' style="text-align: right"><text>修改密码</text></view>
+          <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' value='{{pwdVal}}' maxlength='6'/>
+          
+        <view class="finish"><button type="primary" size="mini" bindtap="finish">确认支付</button></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="operate">
+    <button type="primary" size="mini" class="affirm" bindtap="ok" disabled="{{clickAffirm}}">确认订单</button>
+  </view>
+</view>

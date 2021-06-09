@@ -1,0 +1,15 @@
+<!--pages/me/trade/tradelist/tradelist.wxml-->
+<view class="container">
+  <view class="gooods-panel" wx:for="{{trade_list}}" wx:key="key">
+    <view class="goods-box" bindtap="goDetails" data-id="{{item.id}}">
+      <view class="img"><image src="{{item.img}}"></image></view>
+      <view class="content">
+        <view class="text title">{{item.goods_title}}</view>
+        <view class="text price">￥ {{item.price}}</view>
+        <view class="text time">{{item.add_time}}<span style="font-size:28rpx"> 创建此订单</span></view>
+      </view>
+    </view>
+    <view class="flag"><image src="{{item.flag_image}}"></image></view>
+  </view>
+
+</view>

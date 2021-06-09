@@ -1,0 +1,51 @@
+<!--pages/home/goodsdetail.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="userInfo">
+    <view class="userBox-left">
+      <image class="userImg" src="{{productInfo.userImage}}"></image>
+    </view>
+    <view class="userBox-right">
+      <view class="top"><text>{{productInfo.userName}}</text></view>
+      <view class="bottom"><text>{{productInfo.add_time}} 发布</text></view>
+    </view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class="goodsInfo">
+    <view class="price">￥ {{productInfo.price}}</view>
+    <view class="title">{{productInfo.title}}</view>
+    <view class="intro" wx:if="{{showIntro}}">{{productInfo.goods_intro}}</view>
+   
+    <view class="img"><image src="{{productInfo.image}}" mode="widthFix" bindtap="preview"></image>
+    </view> 
+    
+    <!-- 评分面板 -->
+    <view class='stars' wx:if="{{productInfo.display}}">
+        <view class='content'>
+          <view>请您为该商品评分：</view>
+          <view>
+            <!-- <view class="starbox" wx:for="{{stars}}" wx:key="v" style='background:url("{{item.flag==1?item.bgImg:item.bgfImg}}") no-repeat top; background-size:100%;' data-index="{{index}}" bindtap='score'> -->
+            <view class="starbox" wx:for="{{stars}}" wx:key="v" data-index="{{index}}" bindtap='score'>
+              <image class="imgstar" src="{{item.flag==1?item.bgImg:item.bgfImg}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class="textbox"><text>(我们将根据您的评分优化您的推荐模型)</text></view>
+      </view>
+    
+  </view>
+
+  
+
+  
+
+  <!-- 操作栏 -->
+  <view class="operate" wx:if="{{productInfo.display}}">
+    <button size="mini" class="feedback">反馈</button>
+    <button size="mini" class="pay" bindtap="toPay">直接拍下</button>
+    <button type="primary" size="mini" class="communicate">联系卖家</button>
+    
+  </view>
+
+</view>

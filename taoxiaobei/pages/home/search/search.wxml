@@ -1,0 +1,36 @@
+<!--pages/home/search.wxml-->
+<view class="container">
+  <view class="search">
+    <view class="scan">
+      <image class="widegets-img scan-img" src="/images/scan.png" mode="aspectFit"></image>
+    </view>
+    <view class="search-input">
+      <image class="search-icon" src="/images/search.png" mode="aspectFit"></image>
+      <input class="search-text" placeholder="搜索商品" bindinput='getInputValue' value='{{searchKey}}' ></input>
+    </view>
+    <view class="scan" bindtap="searchClick">
+      <image class="widegets-img chat-img" src="/images/chat.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+
+  <scroll-view class="content-scroll" scroll-y="ture">
+    <!-- 商品列表 -->
+    <view class="product-list">
+      <block wx:for="{{productList}}" wx:key="key">
+        <view class="product-item" bindtap="clickProduct" data-id="{{item.goods_id}}">
+          <view class="product-img">
+            <image src="{{item.image}}" mode="aspectFill"></image>
+          </view>
+          <view class="product-title">{{item.title}}</view>
+          <view class="product-price">￥ {{item.price}}</view>
+          <view class="user-info">
+            <image class="user-img" src="{{item.userImage}}"></image>
+            <view class="user-name">{{item.userName}}</view>
+          </view>
+        </view>
+      </block>
+      <view class="msg"><p>{{msg}}</p></view>
+    </view>
+  </scroll-view>
+</view>

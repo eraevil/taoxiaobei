@@ -1,0 +1,108 @@
+/* pages/me/trade/consignee/consignee.wxss */
+/* 头信息 */
+.hint{
+  width: 300rpx;
+  /* height: 80rpx; */
+  /* text-align: center; */
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  color: #333333;
+  /* font-weight: bold; */
+  font-size: 36rpx;
+  font-family: 'Microsoft YaHei UI';
+  /* border: 2rpx black solid; */
+}
+.hintImgBox{
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+}
+.hintImg{
+  width: 80rpx;
+  height: 80rpx;
+}
+.hintText{
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+  left: 90rpx;
+  display: inline-block;
+}
+
+/* 信息项的通用属性 */
+.box{
+  margin-bottom: 25rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.label{
+  width: 20%;
+  font-size: 30rpx;
+  display: inline-block;
+  line-height: 78rpx;
+  font-family: 'Times New Roman', Times, 'Microsoft YaHei UI';
+  font-weight: 600;
+  text-align: right;
+  padding-right: 20rpx;
+}
+
+.input{
+  display: inline-table;
+  width: 70%;
+  margin-top: 15rpx;
+}
+
+input{
+  width: 100%;
+  height: 70rpx;
+  padding: 0 10rpx;
+  line-height: 70rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+  /* border-top: 10rpx solid #999; */
+}
+
+/* 收货备注 */
+.remark{
+  height: 420rpx;
+  line-height: 40rpx;
+}
+ .f{
+  display: flex;
+}
+.f-end{
+  justify-content: flex-end;
+}
+.text-count-display{
+  padding: 2%;
+  /* height: 90%; */
+}
+.textarea-count {
+  width: 70%;
+  display: inline-block;
+  position: absolute;
+  margin-top:21rpx;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.textarea-count textarea{
+  padding-left: 10rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  position: relative;
+  width: 100%;
+ /* height: 90%; */
+}
+
+
+/* 提交 */
+.submit{
+  width: 100%;
+  height: 300rpx;
+  margin-top: 20rpx;
+}

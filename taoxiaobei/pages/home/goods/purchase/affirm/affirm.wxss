@@ -1,0 +1,341 @@
+/* pages/home/purchase/affirm.wxss */
+@import '/components/pay/pay.wxss';
+
+page{
+  background: #ddd;
+}
+
+/* 地址信息 */
+.address-info{
+  width: 99%;
+  height: 300rpx;
+  
+  /* border: 1rpx #000 solid; */
+}
+
+.box{
+  width: 94%;
+  height: 240rpx;
+  margin-left: 3%;
+  margin-top: 30rpx;
+  border-radius: 30rpx;
+  background: #fff;
+}
+.adbox .left{
+  width: 20%;
+  height: 100%;
+}
+
+.adbox .left image{
+  height: 80rpx;
+  width: 80rpx;
+  top:30rpx;
+}
+
+/* 图标的位置 */
+.adbox .left view{
+  position: relative;
+  top: 70rpx;
+  left: 30rpx;
+}
+
+.adbox .center{
+  width: 70%;
+  height: 100%;
+  display: block;
+}
+
+.adbox .center view{
+  margin-top: 25rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  
+}
+
+.adbox .right{
+  width: 8%;
+  height: 100%;
+}
+
+.adbox .right view{
+  position: relative;
+  top: 95rpx;
+  left: 20rpx;
+}
+
+.right view image{
+  /* border: 1rpx #000 solid; */
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.box view{
+  float: left;
+  /* border: 1rpx #000 solid; */
+}
+
+.phone{
+  margin-left: 20rpx;
+}
+
+.address{
+  width: 100%;
+}
+
+
+
+/* 商品信息 */
+.product-info{
+  width: 99%;
+  height: 350rpx;
+  background: #ddd;
+  /* border: 1rpx #000 solid; */
+}
+
+.product-info .box{
+  height: 320rpx;
+  margin-top: 30rpx;
+}
+.name-box{
+  width: 100%;
+  /* border: 1rpx #000 solid; */
+  margin-top: 20rpx;
+  border-bottom: 1rpx #ddd solid;
+  padding-bottom: 5rpx;
+}
+.name-img{
+  /* position: relative;
+  top: 20rpx;
+  left: 20rpx; */
+  margin-left: 20rpx;
+  
+  /* border: 1rpx #000 solid; */
+}
+
+.user_name{
+  margin-left: 15rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.ad{
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.name-box image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 5rpx;
+}
+
+.product{
+  margin-top: 25rpx;
+  margin-left: 20rpx;
+}
+.product view{
+  float: left;
+}
+
+.product image{
+  width: 190rpx;
+  height: 190rpx;
+  border-radius: 8rpx;
+}
+.product-box{
+  position: absolute;
+}
+
+.title{
+  width: 400rpx;
+  /* border: 1rpx #000 solid; */
+  position: relative;
+  left: 220rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.price{
+  width: 100%;
+  position: relative;
+  left: 220rpx;
+  top: 30rpx;
+  color: rgb(240,133,82);
+}
+
+.price text{
+  font-size: 40rpx;
+}
+
+
+/* 操作栏 */
+.operate{
+  /* background: #c0c0c0; */
+  background-color: #fff;
+  position: fixed;
+  bottom:0;
+  width: 750rpx;
+  height: 110rpx;
+  box-shadow:2rpx 0rpx 4rpx 0px #DDDDDD;
+}
+
+.operate button{
+  /* width:200rpx; */
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-top: 25rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 545;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.affirm{
+  float: right;
+  margin-right: 20rpx;
+}
+
+
+
+/* 弹出框 */
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);   /*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  bottom: 520rpx;
+  width: 650rpx;    /*弹窗布局宽*/
+  height: 370rpx;   /*弹窗布局高，与下面弹出距离transform有关*/
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(400%);  /*弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 3px 2px gainsboro;  /*弹框的悬浮阴影效果，如不需要可注释该行*/
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+
+.td{
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 50rpx;
+  background: white;
+  border: 1rpx #ddd solid;
+  margin-left: 23rpx;
+}
+
+/* 确认支付按钮 */
+.finish{
+  /* width: 100%; */
+  /* height: 100rpx; */
+  /* float: left; */
+  /* text-align: center; */
+  /* border: 1rpx #000 solid; */
+}
+
+.finish button{
+  position: relative;
+  /* top: 80rpx; */
+  left: 230rpx;
+  bottom: 60rpx;
+}
+
+/* 支付密码css start */
+/* .bg_layer{
+  position: fixed; left: 0; top: 0; bottom: 0; right: 0;
+  background-color: rgba(0, 0, 0, 0.6); z-index: 9998;
+  border: 1rpx #000 solid;
+} */
+.input_main{
+    position: fixed; left: 0; bottom: 500rpx; width: 100%; height: 394rpx;
+    background-color: #fff; z-index: 9999;
+}
+.input_title{
+    width: 100%; height: 90rpx; line-height: 90rpx; text-align: center; 
+    font-size: 32rpx; border-bottom: 1rpx solid #e2e2e2;
+    border: 1rpx #000 solid;
+}
+.input_back{
+    position: absolute; left: 0; top: 0;
+    width: 80rpx; height: 90rpx; display: flex; justify-content: center; align-items: center;
+    border: 1rpx #000 solid;
+}
+.input_back text{
+  width: 20rpx;
+  height: 20rpx;
+  background-color: white;
+  border: 1rpx solid #aaa;
+  border-width: 5rpx 0 0 5rpx;
+  transform: rotate(-45deg);
+}
+
+.input_tip{  margin: 30rpx; font-size: 24rpx; color: #888; }
+
+/* 密码掩码模拟 */
+.input_row{
+  width: 540rpx; 
+  margin: 0 auto; 
+  height: 90rpx; 
+  position: relative;
+  display: flex; 
+  align-items: center; 
+  border: 1rpx solid #e2e2e2; 
+  border-radius: 20rpx;
+}
+.input_row .pwd_item{
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  height: 100%; 
+  border-right: 1rpx solid #e2e2e2; 
+  position: relative;
+}
+.pwd_item:nth-last-of-type(1) { border-right: 0; } 
+.pwd_item text { 
+  width: 30rpx; 
+  height: 30rpx; 
+  border-radius: 30rpx; 
+  background-color: #555;
+}
+
+
+.forget_pwd{ 
+  float: right; margin: 30rpx; width: 100rpx; text-align: right; font-size: 24rpx; color: #ff7800;
+}
+
+/* 文本输入框位置: 设置到左边隐藏 */
+.input_control { 
+  position: relative; left: -300rpx; bottom: 0; width: 100rpx; height: 100rpx;
+}
+
+/* 修改密码 */
+.update_pwd{
+  font-size: 24rpx; color: #888;
+  margin-top: 30rpx;
+  margin-right: 30rpx;
+  text-decoration: underline;
+}

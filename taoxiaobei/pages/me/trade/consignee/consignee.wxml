@@ -1,0 +1,33 @@
+<!--pages/me/trade/consignee/consignee.wxml-->
+<view class="container">
+  <view class="hint">
+    <view class="hintImgBox"><image src="/images/write.png" class="hintImg"></image></view>
+    <view class="hintText"><text>收货人信息</text></view>
+  </view>
+  <view class="name box">
+    <view class="label">收货人</view>
+    <view class="input"><input placeholder="请键入收货人信息" bindblur="getName" value="{{consignee_name}}"/></view>
+  </view>
+
+  <view class="phone box">
+    <view class="label">收货电话</view>
+    <view class="input"><input placeholder="请键入收货电话" bindblur="getPhone" value="{{consignee_phone}}"/></view>
+  </view>
+
+  <view class="address box">
+    <view class="label">收货地址</view>
+    <view class="input"><input placeholder="请键入收货地址" bindblur="getAddress" value="{{consignee_address}}" maxlength="14"/></view>
+  </view>
+
+  <view class="remark box">
+    <view class="label">收货备注</view>
+    <view class='textarea-count'>
+      <textarea placeholder="交易时间、方式等其他信息" adjust-position bindinput="getRemark" maxlength='28' value="{{consignee_remark}}"></textarea>
+      <view class='text-count-display f f-end introText'>28字以内</view>
+    </view>
+  </view>
+
+  <view class="submit">
+    <button  type="primary" bindtap="updateConsignee">完成</button>
+  </view>
+</view>

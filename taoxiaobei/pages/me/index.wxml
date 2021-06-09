@@ -1,0 +1,101 @@
+<!--pages/me/index.wxml-->
+<view class="container">
+  <view class="head">
+    <view class="box">
+      <view class="userImg"><image src="{{userInfo.user_headimg}}"></image></view>
+      <view class="userName">
+        <view class="name">{{userInfo.nick_name}}</view>
+        <view class="page">
+          <view class="pageIcon"><text space="ensp"> 个人主页 ></text></view>
+        </view>
+      </view>
+      <view class="icon"><image src="/images/update.png"></image></view>
+      <view class="text"><text>共发布{{userInfo.release}}件商品，卖出{{userInfo.saled}}件，买入0件</text></view>
+    </view>
+  </view>
+
+  <view class="goods">
+    <view class="box">
+      <view class="boxTitle">我的商品</view>
+      <view class="status">
+        <view class="statusBox" bindtap="goGoodsList" data-status="0">
+          <view class="statusBox-top"><image src="/images/releasing1.png"></image></view>
+          <view class="statusBox-bot">发布中</view>
+        </view>
+        <view class="statusBox" bindtap="goGoodsList" data-status="1">
+          <view class="statusBox-top"><image src="/images/sale.png"></image></view>
+          <view class="statusBox-bot">已上架</view>
+        </view>
+        <view class="statusBox" bindtap="goGoodsList" data-status="2">
+          <view class="statusBox-top"><image src="/images/saled.png"></image></view>
+          <view class="statusBox-bot">已卖出</view>
+        </view>
+        <view class="statusBox" bindtap="goGoodsList" data-status="3">
+          <view class="statusBox-top"><image src="/images/ok.png"></image></view>
+          <view class="statusBox-bot">已完成</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="trade">
+    <view class="box">
+      <view class="boxTitle">我的交易</view>
+      <view class="status">
+        <view class="statusBox" bindtap="goTradeList" data-status="0">
+          <view class="statusBox-top"><image src="/images/created.png"></image></view>
+          <view class="statusBox-bot">已创建</view>
+        </view>
+        <view class="statusBox" bindtap="goTradeList" data-status="1">
+          <view class="statusBox-top"><image src="/images/payed.png"></image></view>
+          <view class="statusBox-bot">已付款</view>
+        </view>
+        <view class="statusBox" bindtap="goTradeList" data-status="2">
+          <view class="statusBox-top"><image src="/images/over.png"></image></view>
+          <view class="statusBox-bot">已完成</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="info">
+    <view class="box">
+      <view class="tr" bindtap="goUpdateAddress">
+        <view><image src="/images/address.png"></image></view>
+        <view class="text"><text>收货信息</text></view>
+      </view>
+      <view class="tr" bindtap="goRecharge">
+        <view><image src="/images/identify.png"></image></view>
+        <view class="text"><text>充值购买</text></view>
+      </view>
+      <view class="tr">
+        <view><image src="/images/feadback.png"></image></view>
+        <view class="text"><text>反馈建议</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="protocol">
+    <view class="box">
+      <view class="tr">
+        <view><image src="/images/school.png"></image></view>
+        <view class="text"><text>学校</text></view>
+        <view class="schoolName">{{userInfo.school_name}}</view>
+      </view>
+      
+      <view class="tr" bindtap="toUseProtrol">
+        <view><image src="/images/protrol1.png"></image></view>
+        <view class="text"><text>淘小北软件许可使用协议</text></view>
+      </view>
+      <view class="tr">
+        <view><image src="/images/protrol2.png"></image></view>
+        <view class="text"><text>淘小北隐私协议</text></view>
+      </view>
+      <view class="tr">
+        <view><image src="/images/protrol3.png"></image></view>
+        <view class="text"><text>淘小北平台规则</text></view>
+      </view>
+    </view>
+  </view>
+
+</view>

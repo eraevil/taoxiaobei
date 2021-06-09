@@ -1,0 +1,30 @@
+<view class="category container">
+  <scroll-view class="nav_left" scroll-y>
+    <block wx:for="{{navLeftItems}}" wx:key="key">
+      <view class="nav_left_items {{curIndex == index ? 'nav_left_items-active' : ''}}" data-index="{{index}}" bindtap="switchRightTab">
+      <text>{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+  <scroll-view class="nav_right" scroll-y>
+    <!-- 商品列表 -->
+    <view class="product-list">
+      <block wx:for="{{productList}}" wx:key="key">
+        <view class="product-item" bindtap="clickProduct" data-id="{{item.goods_id}}">
+          <view class="product-img">
+            <image src="{{item.image}}" mode="scaleToFill"></image>
+          </view>
+          <view class="product-title">{{item.title}}</view>
+          <view class="product-price">￥ {{item.price}}</view>
+          <view class="user-info">
+            <image class="user-img" src="{{item.userImage}}"></image>
+            <view class="user-name">{{item.userName}}</view>
+          </view>
+        </view>
+      </block>
+      <view class="msg" bindtap="onReachBottom"><p>{{msg}}</p></view>
+      
+    </view>
+
+  </scroll-view>
+</view>

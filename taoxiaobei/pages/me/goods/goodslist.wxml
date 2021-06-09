@@ -1,0 +1,15 @@
+<!--pages/me/goods/goodslist.wxml-->
+<view class="container">
+  <!-- <view class="title">已发布</view> -->
+  <view class="gooods-panel" wx:for="{{goods_list}}" wx:key="key">
+    <view class="goods-box" bindtap="goDetails" data-id="{{item.goods_id}}">
+      <view class="img"><image src="{{item.img}}"></image></view>
+      <view class="content">
+        <view class="text title">{{item.goods_title}}</view>
+        <view class="text price">￥ {{item.price}}</view>
+        <view class="text time">{{item.add_time}}</view>
+      </view>
+    </view>
+    <view class="flag"><image src="{{item.flag_image}}"></image></view>
+  </view>
+</view>
