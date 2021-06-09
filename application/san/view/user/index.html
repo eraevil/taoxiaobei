@@ -100,11 +100,6 @@
 
         <div style="float:top;">
             <div style="display: inline;float: left;"><p class="page-title">用户列表</p></div>
-
-            <div>
-                <button style="display: inline; float: right;" class="btn btn-primary disabled_flag" type="button" data-id="" onclick="clickAdd()"><a id="add" href="{:url('Admin/add')}" style="color:#fff;">新增</a></button>
-            </div>
-
         </div>
 
 
@@ -117,7 +112,7 @@
                     <th class="col-sm-4" style="border-bottom:0px !important">用户编号</th>
                     <th class="col-sm-3" style="border-bottom:0px !important">昵称</th>
                     <th class="col-sm-2" style="border-bottom:0px !important">性别</th>
-                    <th class="col-sm-3" style="border-bottom:0px !important">联系电话</th>
+                    <!--<th class="col-sm-3" style="border-bottom:0px !important">联系电话</th>-->
                     <th class="col-sm-4" style="border-bottom:0px !important">学校</th>
                     <th class="col-sm-2" style="border-bottom:0px !important">状态</th>
                     <th class="col-sm-3" style="border-bottom:0px !important">注册时间</th>
@@ -149,7 +144,7 @@
                     {else}
                     <td>女</td>
                     {/if}
-                    <td>{$vo.user_phone}</td>
+                    <!--<td>{$vo.user_phone}</td>-->
                     <td>{$vo.school_name}</td>
                     {if condition="$vo.trade_status eq 1"}
                     <td>正常</td>
@@ -159,7 +154,7 @@
                     <td>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
                     <td>
                         <a href="{:url('User/details',['id' => $vo.user_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>
-                        <button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>
+                        <button onclick="" class="layui-btn btn-del layui-btn-sm">禁用</button>
                     </td>
                 </tr>
                 {/volist}
@@ -183,60 +178,9 @@
 {include file="public/footer"}
 </html>
 <script>
-    // 触发add按钮
-    function clickAdd(){
-        console.log($("#add").text())
-        document.getElementById("add").click();
-    }
-
-    // 点击删除
-    function clickDel(id,name){
-        str = "确认删除管理员：【 " + name + "】？";
-
-        console.log(str)
-
-        var question = confirm(str);
-        if (question == true)
-        {
-            $.ajax({
-                url: "{:url('Admin/delete')}",
-                data:{
-                    "id": id
-                },
-                dataType: 'json',
-                type: 'post',
-                success: function (res) {
-                    console.log("回来啦");
-                    console.log(res);
-                    if (res.code == 10000) {
-                        if(res.msg != '') layer.msg(res.msg);
-                        setTimeout(function () {
-                            window.location.href = '{:url("Admin/index")}'
-                        }, 2000);
-                    } else {
-                        layer.msg(res.msg);
-                    }
-                },
-                err: function (res) {
-                    console.log(res);
-                }
-            })
-        }
-        else
-        {
-            layer.msg('已取消')
-            return;
-        }
-    }
-
     $(function () {
         $(".user").addClass("active");
         $(".user ul").addClass("in");
     });
-    // $('.hh').on('click', function(event) {
-    //     event.preventDefault();
-    //     window.location.href=$(this).attr('data-href')
-    //
-    // });
 
 </script>

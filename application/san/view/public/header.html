@@ -103,32 +103,30 @@
                         </li>
                     </ul>
                 </li>
-                <!--<li class="openNav">-->
-                    <!--<a href="#">-->
-                        <!--<i class="iconfont icon-lanmu"></i>-->
-                        <!--<span class="nav-label">栏目管理</span>-->
-                        <!--<span class="fa arrow"></span>-->
-                    <!--</a>-->
-                    <!--<ul class="nav nav-second-level collapse">-->
-                        <!--<li data-control='' class="pageChange">-->
-                            <!--<a class="J_menuItem" href="{:url('Column/index')}">栏目列表</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-                <li class="openNav">
+                <li class="openNav goods">
                     <a href="#">
                         <i class="iconfont icon-neirong"></i>
-                        <span class="nav-label">商品类别</span>
+                        <span class="nav-label">商品管理</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse">
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Category/index')}">一级商品</a>
+                            <a class="J_menuItem" href="{:url('Goods/index',['type' => 0])}">待审核</a>
                         </li>
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Category/index')}">二级商品</a>
+                            <a class="J_menuItem" href="{:url('Goods/index',['type' => 1])}">已上架</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('Goods/index',['type' => 2])}">已卖出</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('Goods/index',['type' => 3])}">已完成</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('Goods/index',['type' => 4])}">状态异常</a>
                         </li>
                     </ul>
+
                 </li>
                 <li class="openNav user">
                     <a href="#">
@@ -142,27 +140,51 @@
                         </li>
                    </ul>
                 </li>
-                <li class="openNav">
+
+                <li class="openNav order">
                     <a href="#">
-                        <i class="iconfont icon-lanmu"></i>
-                        <span class="nav-label">轮播图</span>
+                        <i class="iconfont icon-shouqi"></i>
+                        <span class="nav-label">订单信息</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse">
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Result/index')}">轮播图</a>
+                            <a class="J_menuItem" href="{:url('User/index')}">已创建</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('User/index')}">已付款</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('User/index')}">已完成</a>
+                        </li>
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('User/index')}">状态异常</a>
                         </li>
                     </ul>
                 </li>
-                <li class="openNav">
+
+                <li class="openNav recharge">
                     <a href="#">
-                        <i class="iconfont icon-danye"></i>
-                        <span class="nav-label">其他管理</span>
+                        <i class="iconfont icon-zhankai"></i>
+                        <span class="nav-label">充值服务</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse">
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Banar/index')}">其他管理</a>
+                            <a class="J_menuItem" href="{:url('Recharge/index')}">充值服务</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="openNav">
+                    <a href="#">
+                        <i class="iconfont icon-lanmu"></i>
+                        <span class="nav-label">管理员</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li data-control='' class="pageChange">
+                            <a class="J_menuItem" href="{:url('Admin/index')}">管理员信息</a>
                         </li>
                     </ul>
                 </li>
@@ -174,19 +196,13 @@
                     </a>
                     <ul class="nav nav-second-level collapse">
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('System/index')}">网站设置</a>
+                            <a class="J_menuItem" href="{:url('Setting/website')}">网站设置</a>
                         </li>
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Contact/index')}">联系方式</a>
+                            <a class="J_menuItem" href="{:url('Setting/backup')}">数据备份</a>
                         </li>
                         <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Admin/index')}">管理员</a>
-                        </li>
-                        <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Backups/index')}">数据备份</a>
-                        </li>
-                        <li data-control='' class="pageChange">
-                            <a class="J_menuItem" href="{:url('Journal/index')}">管理日志</a>
+                            <a class="J_menuItem" href="{:url('Setting/journal')}">管理日志</a>
                         </li>
                     </ul>
                 </li>

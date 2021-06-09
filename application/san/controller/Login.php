@@ -16,8 +16,6 @@ class Login extends Controller
 
         if (request()->isPost()) {
             $data = input('post.');
-
-
             //验证码判断
             if (!captcha_check($data['verifycode'])) {
                 ajaxmsg("验证码错误", 10002);
@@ -46,7 +44,7 @@ class Login extends Controller
                 ajaxmsg("查无此人", 10002);
             }
         }
-        return view('Login/index');
+        return view('login/index');
     }
     //退出登录
     public function logout()

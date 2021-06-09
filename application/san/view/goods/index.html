@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+
+
+    <div class="ibox-content border0" >
+
+        <div style="float:top;">
+            <div style="display: inline;float: left;"><p class="page-title">商品列表</p></div>
+        </div>
+
+
+
+        <br>
+
+        <div style="margin-top: 35px">
+            <table class="table admin-mb0 table-hover">
+                <thead>
+                <tr>
+                    <th class="col-sm-3" style="border-bottom:0px !important">商品编号</th>
+                    <th class="col-sm-4" style="border-bottom:0px !important" title="标题">标题</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">卖家</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">商品类别</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">价格</th>
+                    <th class="col-sm-3" style="border-bottom:0px !important">上传时间</th>
+                    <th class="col-sm-4" style="border-bottom:0px !important">操作</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    <!--<tr style="cursor: pointer;" class="hh" data-href="">-->
+                        <!--<td style="height: 48px">TXB20191116185702431</td>-->
+                        <!--<td style="height: 48px" title="@">@</td>-->
+                        <!--<td>犁生好久</td>-->
+                        <!--<td>电子产品</td>-->
+                        <!--<td>20.00</td>-->
+                        <!--<td>2021-01-03</td>-->
+                        <!--<td>-->
+                        <!--<a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>-->
+                        <!--<button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+
+                    {volist name="$goods" id="vo"}
+                    <tr style="cursor: pointer;" class="hh" data-href="">
+                        <td style="height: 48px">{$vo.goods_num}</td>
+                        <td style="height: 48px" title="{$vo.goods_title}">{$vo.goods_title}</td>
+                        <td title="{$vo.nick_name}">{$vo.nick_name}</td>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.price}</td>
+                        <td title='{$vo.add_time|@date="Y-m-d H:i:s",###}'>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
+                        <td>
+                            <a href="{:url('Goods/details',['id' => $vo.goods_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>
+                            {if condition="$vo.goods_status eq 0"}
+                            <button onclick="ban({$vo.goods_id})" class="ban layui-btn btn-del layui-btn-sm">驳回</button>
+                            <button onclick="ok({$vo.goods_id})" class="ok layui-btn btn-del layui-btn-sm">通过</button>
+                            {/if}
+                        </td>
+
+                    </tr>
+                    {/volist}
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center">{$goods->render()}</div>
+
+
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+    function ban(id) {
+        var goods_id = id
+        var goods_status = 4
+        remark = "管理员驳回"
+
+        $.ajax({
+            type:'POST',
+            url:'https://www.taoxiaobei.cn/san/Goods/check',
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            error(err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function ok(id) {
+        var goods_id = id
+        var remark = ''
+        var goods_status = 1
+        $.ajax({
+            url: "https://www.taoxiaobei.cn/san/Goods/check",
+            type: "POST",
+            // contentType: "application/json",
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            err:function(err) {
+                console.log(err)
+            }
+        })
+    }
+
+    $(function () {
+        $(".goods").addClass("active");
+        $(".goods ul").addClass("in");
+    });
+    // $('.hh').on('click', function(event) {
+    //     event.preventDefault();
+    //     window.location.href=$(this).attr('data-href')
+    //
+    // });
+
+</script>

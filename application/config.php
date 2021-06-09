@@ -239,7 +239,7 @@ return [
     ],
     // 模板替换
     'view_replace_str'       => [
-        '__SAN__'  => '/taoxiaobei/public/static/san',
+        '__SAN__'  => '/static/san',
         '__INDEX__'  =>  '/static/index',
         '__M__'   => '/static/h5',
         '__QINDEX__' => '/static/qindex',

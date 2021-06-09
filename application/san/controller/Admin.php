@@ -16,10 +16,9 @@ class Admin extends Common
         $admin = db('admin')
             ->alias('a')
             ->join('school b','a.manage_school = b.school_id')
-            ->where('status','between','1,2')
-            ->field('id,name,phone,sex,school_name,status,login_time,login_ip')
-            ->order('id')
-            ->paginate(15);
+            ->field('a.id,name,phone,sex,school_name,status,login_time,login_ip')
+            ->order('a.id')
+            ->paginate(50);
 
         $op = session('id');
 
@@ -57,13 +56,13 @@ class Admin extends Common
         $info = db('admin')
             ->alias('a')
             ->join('school b','a.manage_school = b.school_id')
-            ->where(['id' => $id])
-            ->field('id,name,phone,sex,manage_school,school_name,status')
+            ->where(['a.id' => $id])
+            ->field('a.id,name,phone,sex,manage_school,school_name,status')
             ->find();
 
-        $log = db('system_log')->where(['admin_id' => $id])->order('time desc')->paginate(15);
+        $log = db('system_log')->where(['admin_id' => $id])->order('time desc')->paginate(50);
 
-        return view('Admin/details',['info' => $info, 'log' => $log, 'info_status' => $info_status, 'school_list' => $school_list]);
+        return view('admin/details',['info' => $info, 'log' => $log, 'info_status' => $info_status, 'school_list' => $school_list]);
     }
 
     // 保存信息
@@ -144,7 +143,7 @@ class Admin extends Common
             }
         }
 
-        return view('Admin/add',['op' => $op, 'info' => $info]);
+        return view('admin/add',['op' => $op, 'info' => $info]);
     }
 
     public function delete(){

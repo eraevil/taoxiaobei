@@ -104,164 +104,113 @@
     <!--今日数据-->
     <div class="row" style="height: 50px;line-height: 50px;">
         <div class="col-sm-6">
-            <h3 style="height: 50px;line-height: 50px;">最新数据</h3>
+            <h3 style="height: 50px;line-height: 50px;">数据统计</h3>
         </div>
     </div>
     <div class="todaysData whitebg" style="padding: 50px 0;background: #fff">
         <div class="dataWid">
-            <a href="http://qscx.siantest.com/san/institute/index.html">
+            <a href="http://www.taoxiaobei.cn/san/">
                 <div class="indexItem indexItem2" style="background: #58A5EE">
                     <div>
                         <img src="__STATIC__/san/image/wenzhang.png" alt="" width="50" height="50">
                     </div>
                     <div style="text-align: left;">
-                        <p>一级商品</p>
-                        <h2>   {$category1}</h2>
+                        <p>商品总数</p>
+                        <h2>   {$goods}</h2>
                     </div>
                     <img src="__STATIC__/san/image/wenzhang2.png" alt="" class="bgPic">
                 </div>
             </a>
-            <a href="http://qscx.siantest.com/san/researcher/index.html">
+            <a href="http://www.taoxiaobei.cn/san/admin/index.html">
                 <div class="indexItem indexItem3" style="background: #FE7877">
                     <div>
                         <img src="__STATIC__/san/image/zuori.png" alt="" width="50" height="50">
                     </div>
                     <div style="text-align: left;">
-                        <p>研究员风采</p>
-                        <h2>456</h2>
+                        <p>管理员数量</p>
+                        <h2>{$admin}</h2>
                     </div>
                     <img src="__STATIC__/san/image/zuori2.png" alt="" class="bgPic">
                 </div>
             </a>
-            <a href="http://qscx.siantest.com/san/handpick/index.html">
+            <a href="http://www.taoxiaobei.cn/san/user/index.html">
                 <div class="indexItem indexItem4" style="background: #fbb346">
                     <div>
                         <img src="__STATIC__/san/image/fangwen.png" alt="" width="50" height="50">
                     </div>
                     <div style="text-align: left;">
-                        <p>精选资讯</p>
-                        <h2>786</h2>
+                        <p>用户数量</p>
+                        <h2>{$user}</h2>
                     </div>
                     <img src="__STATIC__/san/image/fangwen2.png" alt="" class="bgPic">
                 </div>
             </a>
         </div>
     </div>
-    <!--公告列表-->
+    <!--最新商品-->
+    <div class="row" style="height: 50px;line-height: 50px;">
+        <div class="col-sm-6">
+            <h3 style="height: 50px;line-height: 50px;">最新商品</h3>
+        </div>
+    </div>
     <div class="row">
-    <div class="noticeList">
-        <div class="col-sm-6">
-            <div class="row" style="height: 50px;line-height: 50px;padding-top: 20px">
-                <div class="col-sm-6">
-                    <h3 style="height: 50px;line-height: 50px;">最新文章</h3>
-                </div>
-                <!--<div class="col-sm-6 text-right">-->
-                    <!--&lt;!&ndash;<a href="{:url('content/index')}" class="font-s12  more" style="color: #999">查看更多></a>&ndash;&gt;-->
-                <!--</div>-->
-            </div>
-            <div class="admin-mt20">
-                <div class="ibox-content border0" style="margin-top: 0">
-                    <table class="table admin-mb0 table-hover">
-                        <thead>
-                            <tr>
-                                <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
-                                <th  class="col-sm-6" style="border-bottom:0px !important">标题</th>
-                                <th class="col-sm-3" style="border-bottom:0px !important">发布时间</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <!--{notempty name='$newest_content'}-->
-                        <!--{volist name='$newest_content' id='v'}-->
-                            <tr style="cursor: pointer;" class="hh" data-href="">
-                                <td style="height: 48px">001</td>
-                                <td class="hx" style="padding-top:14px;">
-                                    <p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                        群山渐归沧海
-                                    </p>
-                                </td>
-                                <td>2018.03.24</td>
-                            </tr>
-                        <!--{/volist}-->
-                        <!--{else}-->
-                            <!--搜索无结果-->
-                            <tr class="not_tr">
-                                <td colspan="5">
-                                    <div style="width: 100%;height:100%;margin-top: 100px;padding-bottom: 100px">
-                                        <img src="__STATIC__/san/image/nodat.png" alt=""  style="display: block;margin: 20px auto;width: 50px">
-                                        <p class="text-center" style="color: #d7d7d8">没有最新文章</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        <!--{/notempty}-->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <table class="table admin-mb0 table-hover">
+            <thead>
+            <tr>
+                <th class="col-sm-4" style="border-bottom:0px !important">用户编号</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">昵称</th>
+                <th class="col-sm-2" style="border-bottom:0px !important">性别</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">联系电话</th>
+                <th class="col-sm-4" style="border-bottom:0px !important">学校</th>
+                <th class="col-sm-2" style="border-bottom:0px !important">状态</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">注册时间</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">详情</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr style="cursor: pointer;" class="hh" data-href="">-->
+            <!--<td style="height: 48px">TXB20191116185702431</td>-->
+            <!--<td style="height: 48px">@</td>-->
+            <!--<td>男</td>-->
+            <!--<td>18383086596</td>-->
+            <!--<td>电子科技大学成都学院</td>-->
+            <!--<td>正常</td>-->
+            <!--<td>2021-01-03</td>-->
+            <!--<td>-->
+            <!--<a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>-->
+            <!--<button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            {volist name="$user_list" id="vo"}
+            <tr style="cursor: pointer;" class="hh" data-href="">
+                <td style="height: 48px">{$vo.user_num}</td>
+                <td style="height: 48px">{$vo.nick_name}</td>
+                {if condition="$vo.user_sex eq 1"}
+                <td>男</td>
+                {else}
+                <td>女</td>
+                {/if}
+                <td>{$vo.user_phone}</td>
+                <td>{$vo.school_name}</td>
+                {if condition="$vo.trade_status eq 1"}
+                <td>正常</td>
+                {else}
+                <td>禁用</td>
+                {/if}
+                <td>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
+                <td>
+                    <a href="{:url('User/details',['id' => $vo.user_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>
+                    <button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>
+                </td>
+            </tr>
+            {/volist}
+
+
+            </tbody>
+        </table>
     </div>
-    <div class="noticeList">
-        <div class="col-sm-6">
-            <div class="row" style="height: 50px;line-height: 50px;padding-top: 20px">
-                <div class="col-sm-6">
-                    <h3 style="height: 50px;line-height: 50px;">热门文章</h3>
-                </div>
-                <!--<div class="col-sm-6 text-right">-->
-                    <!--&lt;!&ndash;<a href="{:url('content/index')}" class="font-s12  more" style="color: #999">查看更多></a>&ndash;&gt;-->
-                <!--</div>-->
-            </div>
-            <div class="admin-mt20">
-                <div class="ibox-content border0" style="margin-top: 0">
-                    <table class="table admin-mb0 table-hover">
-                        <thead>
-                            <tr>
-                                <th class="col-sm-2" style="border-bottom:0px !important">序号</th>
-                                <th class="col-sm-6" style="border-bottom:0px !important">标题</th>
-                                <th class="col-sm-2" style="border-bottom:0px !important">阅读</th>
-                                <th class="col-sm-3" style="border-bottom:0px !important">发布时间</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <!--{notempty name='$hot_content'}-->
-                        <!--{volist name='$hot_content' id='vo'}-->
-                            <!--<tr style="cursor: pointer;" class="hh" data-href="{:url('Content/detail',['id'=>$vo.id])}">-->
-                                <!--<td style="height: 48px">{$vo.id}</td>-->
-                                <!--<td class="hx"  style="padding-top:14px;">-->
-                                    <!--<p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">-->
-                                        <!--{$vo.content_title}-->
-                                    <!--</p>-->
-                                <!--</td>-->
-                                <!--<td>{$vo.reading_number}</td>-->
-                                <!--<td>{$vo.ctime|@date='Y-m-d',###}</td>-->
-                            <!--</tr>-->
-                        <!--{/volist}-->
-                        <!--{else}-->
-                            <!--&lt;!&ndash;搜索无结果&ndash;&gt;-->
-                            <!--<tr class="not_tr">-->
-                                <!--<td colspan="5">-->
-                                    <!--<div style="width: 100%;height: 100%;margin-top: 100px;padding-bottom: 100px">-->
-                                        <!--<img src="__STATIC__/san/image/nodat.png" alt=""  style="display: block;margin: 20px auto;width: 50px">-->
-                                        <!--<p class="text-center" style="color: #d7d7d8">没有热门文章</p>-->
-                                    <!--</div>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                        <!--{/notempty}-->
-                        <tr style="cursor: pointer;" class="hh" data-href="">
-                            <td style="height: 48px">001</td>
-                            <td class="hx" style="padding-top:14px;">
-                                <p style="line-height: 48px;height: 48px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                    群山渐归沧海
-                                </p>
-                            </td>
-                            <td>2018.03.24</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
 
 {include file="public/footer"}
 </html>

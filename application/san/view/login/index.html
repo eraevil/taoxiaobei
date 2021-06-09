@@ -153,7 +153,7 @@
             return;
         }
         $.ajax({
-            url: "{:url('Login/index')}",
+            url: "{:url('login/index')}",
             data: {
                 "name": name,
                 "password": password,
@@ -167,7 +167,7 @@
                 if (res.code == 10000) {
                     layer.msg(res.msg);
                     setTimeout(function () {
-                        window.location.href = '{:url("Index/index")}'
+                        window.location.href = '{:url("index/index")}'
                     }, 2000);
                 } else {
                     // $('#verifycode_img').attr('src','/captcha?seed='+Math.random());

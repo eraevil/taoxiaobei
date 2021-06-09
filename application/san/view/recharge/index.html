@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+</style>
+
+<style>
+    .ibox-content{
+        width: 100%;
+        height: 600px;
+
+    }
+
+    .r-icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    .r-title{
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        line-height: 50px;
+        letter-spacing: 5px;
+    }
+
+    .r-sereach{
+        position: relative;
+
+        top: 30px;
+        left: 35%;
+    }
+
+    .r-table{
+        margin-top: 60px;
+    }
+    .op{
+        float: left;
+        margin-right: 10px;
+    }
+    .op-input{
+        margin-right: 0px;
+    }
+
+
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+
+
+
+    <div class="ibox-content border0" >
+        <div class="r-title">
+            <image class="r-icon" src="__SAN__/image/logofz.png"></image>
+            用户充值
+        </div>
+
+
+        <form action="{:url('Recharge/getUserCharge')}" method="post">
+            <div class="input-group col-sm-4 r-sereach">
+                <input type="text" name="keyword" value="" placeholder="请输入用户名或用户编号" class="input form-control" style="height: 40px">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn btn-primary" style="height: 40px">
+                        <i class="fa fa-search"></i> 搜索
+                    </button>
+                </span>
+            </div>
+        </form>
+
+        {if condition="$user neq null"}
+        <div class="r-table">
+            <table class="table admin-mb0 table-hover">
+                <thead>
+                <tr>
+                    <th class="col-sm-3" style="border-bottom:0px !important">用户编号</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">昵称</th>
+                    <th class="col-sm-2" style="border-bottom:0px !important">余额</th>
+                    <th class="col-sm-5" style="border-bottom:0px !important">操作</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {volist name="$user" id="vo"}
+                <tr style="cursor: pointer;" class="hh" data-href="">
+                    <td style="height: 48px">{$vo.user_num}</td>
+                    <td style="height: 48px">{$vo.nick_name}</td>
+                    <td>{$vo.money}</td>
+                    <td>
+                        <form action="{:url('Recharge/recharge')}" method="post">
+                            <input type="hidden" name="id" value="{$vo.user_id}">
+                            <div class="op op-input"><input type="text" name="money" value="" placeholder="请输入金额" class="input form-control" style="width: 200px" onkeypress="return checkNumber(event,this);"></div>
+                            <div class="op"><button type="submit" class="layui-btn btn-del layui-btn-sm">充值</button></div>
+                        </form>
+                        <div class="op"><a href="{:url('User/details',['id' => $vo.user_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a></div>
+                    </td>
+                </tr>
+                {/volist}
+
+                </tbody>
+            </table>
+        </div>
+        {/if}
+
+
+
+
+
+        <br>
+
+
+
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+<script>
+
+    $(function () {
+        $(".recharge").addClass("active");
+        $(".recharge ul").addClass("in");
+    });
+    // $('.hh').on('click', function(event) {
+    //     event.preventDefault();
+    //     window.location.href=$(this).attr('data-href')
+    //
+    // });
+
+    // 输入框保留两位小数
+    function checkNumber(e,txt){
+        var key = window.event ? e.keyCode : e.which;
+        var keychar = String.fromCharCode(key);
+        reg = /\d|\./;
+        var result = reg.test(keychar);
+
+        if(result){
+            if(e.keyCode==46)
+                result=!(txt.value.split('.').length>1);
+            else
+                result=!(txt.value.split('.').length>1 && txt.value.split('.')[1].length>1);
+        }
+        if(!result){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+</script>

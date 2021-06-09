@@ -10,62 +10,87 @@ use think\Controller;
 
 class Personal extends Controller
 {
-    /**
-     * @Purpose:
-     * 个人板块首页头像显示
-     * @Method Name: Null
-     *
-     * @Param: user_id          用户id
-     * @Creater: PaoPao
-     *
-     * @Author: PaoPao
-     *
-     * @Return: $info    返回头像，昵称
-     */
-    public function index()
-    {
-        if (request() -> isPost()){
-            $user_id = input('user_id');
-            $info = db('user')
-                ->where(['user_id' => $user_id])
-                ->field('user_headimg')
+    // 获取个人主页信息
+    public function getUserInfo(){
+        if(request()->isPost()){
+            $param = input('post.');
+
+            $thr_session = $param['thr_session'];
+
+            $info = db('user')->alias('a')
+                ->join('school b', 'a.school_id = b.school_id')
+                ->where(['thr_session' => $thr_session])
+                ->field('user_id,nick_name,user_headimg,school_name,money,user_num')
                 ->find();
-            if($info)
-                ajaxmsg("返回查询信息",200,$info);
-            else
-                ajaxmsg("没有查询到信息",202);
+            $release = db('goods')->where(['user_id' => $info['user_id']])->count();
+            $saled = db('goods')->where(['user_id' => $info['user_id']])->where(['goods_status' => [['eq',2],['eq',3],['eq',4]]])->count();
+            $info['release'] = $release;
+            $info['saled'] = $saled;
+
+            if($info){
+                ajaxmsg('成功',200,$info);
+            }else{
+                ajaxmsg('失败',500);
+            }
         }
     }
 
-    /**
-     * @Purpose:
-     * 查看我的交易
-     * @Method Name: Null
-     *
-     * @Param: user_id          用户id
-     * @Param: goods_status     商品状态
-     * @Param: trade_status     订单状态
-     * @Param: judge            查看作为卖家的消息还是作为买家的消息(1：卖家 2：买家)
-     * @Creater: PaoPao
-     *
-     * @Author:
-     *
-     * @Return: statusCode 200
-     */
+    // 获得充值记录
+    public function getRechargeInfo(){
+        if(request()->isPost()){
+            $param = input('post.');
 
-    public function myTransaction()
-    {
-        //判断judge值进行对应的操作
-        //通过user_id查询到所属school_id,再通过两个id及judge值,XXX_status值进行查询
-        $date = input('post.');
-        //judge == 1
-        $info = db('goods')->select();
-        //judge == 2
-        $info = db('trade')->select();
-        if($info)
-            ajaxmsg("返回查询信息",200);
-        else
-            ajaxmsg("查询信息失败",500);
+            $user = db('user')->where(['thr_session' => $param['thr_session']])->field('user_id')->find();
+            $id = $user['user_id'];
+
+            $info = db('recharge')->where(['user_id' => $id])->field('add_time,re_money,admin_name')->order('add_time desc')->select();
+            foreach($info as $key => $inf) {
+                $info[$key]['add_time'] = date('Y-m-d H:i:s',$inf['add_time']);
+                $info[$key]['re_money'] = sprintf("%.2f",$inf['re_money']);
+            }
+
+
+            if($info){
+                ajaxmsg('成功',200,$info);
+            }else{
+                ajaxmsg('失败',500);
+            }
+        }
     }
 
+
+    // 获取收货信息
+    public function getConsigneeInfo(){
+        if (request() -> isPost()) {
+            $param = input('post.');
+            $thr_session = $param['thr_session'];
+
+            $info = db('user')->where(['thr_session' => $param['thr_session']])
+                ->field('consignee_name,consignee_phone,consignee_address,consignee_remark,consignee_status')
+                ->find();
+
+            if($info){
+                ajaxmsg("成功",200,$info);
+            }
+            else{
+                ajaxmsg("失败",500);
+            }
+        }
+    }
+
+    // 更新收货信息
+    public function updateConsigneeInfo(){
+        if (request() -> isPost()) {
+            $param = input('post.');
+            $thr_session = $param['thr_session'];
+
+            $info = db('user')->where(['thr_session' => $param['thr_session']])->update($param);
+            if($info){
+                ajaxmsg("成功",200);
+            }
+            else{
+                ajaxmsg("无更改",500);
+            }
+        }
+    }
 }

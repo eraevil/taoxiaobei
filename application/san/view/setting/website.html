@@ -1,0 +1,134 @@
+{include file="public/header"}
+<style>
+    label{
+        font-weight: normal;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>网站设置</h5>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content m-t">
+            <form method="post"  class="form-horizontal" style="padding-top: 50px">
+
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">网站名称<span class="sign">*</span></label>
+                    <div class="col-sm-3">
+                        <input type="text" value="{$res['sitename']}" name="name" placeholder="请填写网站名称" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">网站图标</label>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary " id="upload1" >
+                            <i class="layui-icon">&#xe67c;</i>上传图标
+                        </button>
+                        <div class="m-t">
+                            {if condition="$res['logo'] eq ''"}
+                            <img  id="cover" width="200" data-sign="0"  src="__SAN__/image/morenfm2.jpg" >
+                            {else}
+                            <img  id="cover" width="200" data-sign="0"  src="__SAN__/{$res['logo']}" >
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label">网站关键词<span class="sign">*</span></label>
+                    <div class="col-sm-3">
+                        <input type="text" value="{$res['keywords']}" name="keyword" placeholder="请填写关键词" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">网站描述<span class="sign">*</span></label>
+                    <div class="col-sm-4">
+                        <!-- <input type="text" value="" name="des" placeholder="请填写网站描述" class="form-control"> -->
+                        <textarea required="required" name="des" placeholder="请填写网站描述" class="form-control"  style="height: 120px">{$res['description']}</textarea>
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <label class="col-sm-2 control-label">网站备案编号<span class="sign">*</span></label>
+                    <div class="col-sm-3">
+                        <input type="text" value="{$res['icp']}" name="siteNum" placeholder="请填写网站备案编号" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-7">
+                        <button class="btn btn-primary" type="button" id="save" data-id="{$res['id']}">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{include file="public/footer"}
+
+<script type="text/javascript">
+    //上传图片
+    layui.use('upload', function(){
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#upload1' //绑定元素
+            ,url: '{:url("Common/img_up")}' //上传接口
+            ,done: function(res){
+                console.log(res)
+                $('#cover').attr('src',res.url);
+            }
+            ,error: function(res){
+                //请求异常回调
+                console.log(res);
+            }
+        });
+    });
+    $('#save').on('click', function(event) {
+        //一系列的判断
+        if($('input[name="name"]').val()===''){
+            layer.msg('请填写网站名称');
+            return false;
+        }
+        if($('input[name="keyword"]').val()===''){
+            layer.msg('请填写网站关键词');
+            return false;
+        }
+        if($('textarea[name="des"]').val()===''){
+            layer.msg('请填写网站描述');
+            return false;
+        }
+        if($('input[name="siteNum"]').val()===''){
+            layer.msg('请填写网站备案编号');
+            return false;
+        }
+        //ajax提交
+        $.ajax({
+            url:"{:url('Setting/website')}",
+            data:{
+                id:$(this).data('id'),
+                sitename:$('input[name="name"]').val(),
+                keywords:$('input[name="keyword"]').val(),
+                logo:$('#cover').attr('src'),
+                description:$('textarea[name="des"]').val(),
+                icp:$('input[name="siteNum"]').val(),
+            },
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code==10000){
+                    layer.msg(res.msg);
+                    setTimeout(function(){
+                        window.location.reload();
+                    },1500);
+                }else{
+                    layer.msg(res.msg);
+                }
+            }
+        });
+    });
+
+
+</script>
+

@@ -10,7 +10,7 @@ class Common extends Controller
     public function _initialize()
     {
         if (!session('id') || !session('name')) {
-            $this->redirect('Login/index');
+            $this->redirect('login/index');
         }
     }
 
@@ -118,6 +118,21 @@ class Common extends Controller
         return 1;
     }
 
+    //图片上传
+    public function img_up(Request $request)
+    {
+        $file = $request->file('file');
+        if (empty($file)) {
+            $this->error('请选择上传文件');
+        }
+        $info = $file->move(ROOT_PATH . 'public' . DS . '/static/san/image/uploads');
+        if ($info) {
+            $url = str_replace('\\', '/', $info->getSaveName());
+            return json(array('state' => 1, 'url' => '/image/uploads/' . $url));
+        } else {
+            return json(array('state' => 0, 'errmsg' => '上传失败'));
+        }
+    }
 
 
 }

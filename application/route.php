@@ -21,6 +21,13 @@ use think\Route;
 //Route::get('login','admin/Login/index');
 //Route::resource('pic','admin/Pic');
 
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: POST,GET');
+if(request()->isOptions()){
+    exit();
+}
+
  return [
      '__pattern__' => [
          'name' => '\w+',

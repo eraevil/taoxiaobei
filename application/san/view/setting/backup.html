@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+{include file="public/header"}
+<style>
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox">
+    </div>
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>数据备份</h5>
+            <div class="ibox-tools" style="margin-top: 0">
+            </div>
+        </div>
+        <div class="ibox-content" style="overflow: hidden;">
+            <form action="" method="" style="padding: 10px 0;overflow: hidden;">
+                <div class="col-sm-5" style="padding-left: 0">
+                    <button type="button" class="btn btn-primary" id="backups">备份</button>
+                </div>
+            </form>
+            <table class="table table-hover" style="margin-top: 20px;">
+
+                <thead>
+                <tr>
+                    <th class="col-sm-2">序号</th>
+                    <th class="col-sm-3">名称</th>
+                    <th class="col-sm-3">时间</th>
+                    <th class="col-sm-3 text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {notempty name='$res'}
+                {volist name='res' id='v'}
+                <tr>
+                    <td>{$order++}</td>
+                    <td>{$v.name}</td>
+                    <td>{$v.time}</td>
+                    <td class="text-center">
+                        <span class="btn  btn-danger btn-sm btn-outline del" data-status='' data-id='{$v.name}'>删除
+                        </span>
+                        <button type="button" data-id='{$v.name}' class="btn btn-outline btn-sm btn-primary" id="restore">还原</button>
+                    </td>
+                </tr>
+                {/volist}
+                {else}
+                <!--搜索无结果-->
+                <tr class="not_tr">
+                    <td colspan="8">
+                        <div style="width: 100%;height: 100%;margin-top: 100px;padding-bottom: 100px">
+                            <img src="__STATIC__/san/image/nodat.png" alt=""  style="display: block;margin: 20px auto;width: 50px">
+                            <p class="text-center"  style="color: #d7d7d8">没有找到你要的内容</p>
+                        </div>
+                    </td>
+                </tr>
+                {/notempty}
+                </tbody>
+            </table>
+            <div style="text-align: center;"></div>
+        </div>
+    </div>
+</div>
+{include file="public/footer"}
+
+</html>
+<script>
+    //备份
+    $('#backups').on('click', function(event) {
+        //ajax提交
+        $.ajax({
+            url: "{:url('Setting/backups')}",
+            type: 'post',
+            dataType: 'json',
+            success: function(res) {
+                if (res.code == 10000) {
+                    layer.msg(res.msg);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        });
+    });
+
+    //还原
+    $('#restore').on('click', function(event) {
+        layer.confirm('你确定要还原数据吗？', {
+            btn: ['确定', '取消'], //按钮
+            title: "提示" //按钮
+        }, function(index) {
+            //ajax提交
+            $.ajax({
+                url: "{:url('Backups/restore')}",
+                type: 'post',
+                dataType: 'json',
+                data:{id:$(this).data('id')},
+                success: function(res) {
+                    if (res.code == 10000) {
+                        layer.msg(res.msg);
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        });
+
+    });
+    delRec('.del','确定删除该备份吗?','删除操作','{:url("Backups/del_backups")}')
+</script>

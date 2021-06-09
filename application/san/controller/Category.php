@@ -23,7 +23,7 @@ class Category extends Common
         if(input('id') != null){
             $id = input('id');
             $info = db('category_01')->where('id','=',$id)->find();
-            return view('Category/edit',['info' => $info]);
+            return view('category/edit',['info' => $info]);
         }else{
 
             echo '222';die;

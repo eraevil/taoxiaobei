@@ -16,9 +16,9 @@ class User extends Common
         $user = db('user')
             ->alias('a')
             ->join('school b','a.school_id = b.school_id')
-            ->order('user_id')
+            ->order('add_time desc')
             ->field('user_id,user_num,nick_name,user_sex,school_name,user_phone,trade_status,add_time')
-            ->paginate(15);
+            ->paginate(50);
 
         return view('',['user' => $user]);
     }
@@ -39,12 +39,12 @@ class User extends Common
             ->join('category_01 b','a.category_id = b.id')
             ->where('user_id','=',$id)
             ->field('goods_id,goods_num,goods_title,b.title,price,goods_status')
-            ->paginate(30);
+            ->paginate(50);
 
         $goods_num = $goods_info->count();
 
 
-        return view('User/details',['user_info' => $user_info, 'goods_info' => $goods_info, 'goods_num' => $goods_num]);
+        return view('user/details',['user_info' => $user_info, 'goods_info' => $goods_info, 'goods_num' => $goods_num]);
     }
 
 

@@ -97,6 +97,9 @@ function get_url($path)
     if (strpos($path, 'http://') !== false) {
         return $path;
     }
+    if (strpos($path, 'https://') !== false) {
+        return $path;
+    }
     $path = ltrim($path, '.');
     return 'jiaqicdn.xyan.cn' . $path;   //这需要换成oss的外网地址
 }

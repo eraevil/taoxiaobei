@@ -66,4 +66,22 @@ class Common extends Controller
         return true;
     }
 
+    //图片上传
+    public function img_up(Request $request)
+    {
+        $file = $request->file('file');
+        if (empty($file)) {
+            $this->error('请选择上传文件');
+        }
+        $info = $file->move(ROOT_PATH . 'public' . DS . '/static/wx/image/uploads');
+        if ($info) {
+            $url = str_replace('\\', '/', $info->getSaveName());
+            return json(array('state' => 1, 'url' => '/image/uploads/' . $url));
+        } else {
+            return json(array('state' => 0, 'errmsg' => '上传失败'));
+        }
+
+    }
+
+
 }

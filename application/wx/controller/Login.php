@@ -8,11 +8,11 @@ use think\Controller;
 
 class Login extends Controller
 {
-    public function getSession(){
+    public function login(){
         if (request()->isPost()) {
             $param = input('post.');
             $code = $param['code'];
-            $encrypteData = $param['encrypteData'];
+            $encryptedData = $param['encryptedData'];
             $iv = $param['iv'];
             $params['appid'] = 'wx272b6c1cd89810d1';
             $params['secret'] = '5caf46ad2a1f717f5ec5a9c9da738086';
@@ -20,26 +20,32 @@ class Login extends Controller
             $params['js_code'] = define_str_replace($code);
             $res = httpCurl('https://api.weixin.qq.com/sns/jscode2session', $params, 'GET');
 
-            $res = json_decode($res, true);
 
-            $ret = $this->decryUser($iv,$res['session_key'],$encrypteData,$params['appid']);
-            $ret = json_decode($ret, true);
+            $res = json_decode($res, true);
             
             $thr_session = md5($res['openid'].$res['session_key']);
             // user open_id session_key nick_name avatar_url thr_session
 
+            // 检查用户是否存在
             $isset = db('user')->where(['open_id' => $res['openid']])->find();
             if($isset){
+                $data = [
+                    'nick_name' => $param['nick_name'],
+                    'user_headimg' => $param['user_headimg'],
+                    'user_sex' => $param['user_sex']
+                ];
+                $update = db('user')->where(['open_id' => $res['openid']])->update($data);
                 ajaxmsg('成功',10000,$isset['thr_session']);
             }else{
                 $data = [
-                    'nick_name' => $ret['nickName'],
-                    'user_headimg' => $ret['avatarUrl'],
+                    'nick_name' => $param['nick_name'],
+                    'user_headimg' => $param['user_headimg'],
                     'open_id' => $res['openid'],
                     'session_key' => $res['session_key'],
                     'thr_session' => $thr_session,
                     'add_time' => time(),
-                    'user_sex' => $ret['gender']
+                    'user_sex' => $param['user_sex'],
+                    'school_id' => 1
                 ];
 
                 $data['user_num'] = "TXB" . date('YmdHis',$data['add_time']) . rand(1000,9999);
@@ -57,11 +63,11 @@ class Login extends Controller
     }
 
     // 解密
-    private function decryUser($iv,$sessionKey,$encrypteData,$appid){
+    private function decryUser($iv,$sessionKey,$encryptedData,$appid){
         import('wxBizDataCrypt',EXTEND_PATH);
 
         $pc = new \WXBizDataCrypt($appid, $sessionKey);
-        $errCode = $pc->decryptData($encrypteData, $iv, $data);
+        $errCode = $pc->decryptData($encryptedData, $iv, $data);
 
         return $data;
     }

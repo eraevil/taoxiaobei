@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header"}
+<style>
+    .indexItem{
+        display: inline-block;height:130px;color: #fff;border-radius: 4px;text-align: center;width: 100%;line-height: 1;
+        position: relative;
+    }
+    .indexItem p{
+        font-size: 14px;
+        padding-top: 0;
+        margin-bottom: 8px
+    }
+    .indexItem h2{
+        padding-top: 0
+    }
+    .indexItem div{
+        display: inline-block;
+        padding-top: 27px
+    }
+    .indexItem div:nth-of-type(2){
+        transform: translateY(18px);
+        margin-left: 10px
+    }
+    .dataWid{
+        display: flex;
+        justify-content: space-around;
+        width: 100%
+    }
+    .dataWid>a{
+        display: inline-block;
+        width: 22%
+    }
+    .indexItem .bgPic{
+        transform: scale(0.7);
+        position: absolute;
+        right: -25px;
+        bottom:-40px;
+    }
+    .indexItem .noticeMsg{
+        position: absolute;
+        right: 8px;
+        top:10px;
+        font-size: 12px;
+        padding: 4px 10px;
+        background: #fff;
+        border-radius: 9px;
+        color: #888
+    }
+    .indexItem .noticeMsg span{
+        color: #FF343C
+    }
+    .indexItem1:hover{
+        background: #37db6d !important
+    }
+    .indexItem2:hover{
+        background: #5caeff !important
+    }
+    .indexItem3:hover{
+        background: #fb8c8c !important
+    }
+    .indexItem4:hover{
+        background: #ffc368 !important
+    }
+
+    .table{
+        margin-top: 20px;
+        border: 1px #e7eaec solid;
+    }
+    .table>thead>tr{
+        background: #f4f6f9;
+        height: 40px;
+        border-bottom: 1px #e7eaec solid;
+
+    }
+    a.more:hover{
+        color: #ccc !important;
+    }
+
+    table{
+        table-layout:fixed;
+    }
+    td{
+        word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+</style>
+
+<style>
+    .ibox-content{
+        width: 100%;
+        height: 1400px;
+    }
+
+    .goods-img{
+        border-radius: 10px;
+    }
+
+    .title{
+        margin-left: 30px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .r-title{
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        line-height: 50px;
+        letter-spacing: 5px;
+    }
+
+    .r-icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    .form-group{
+        margin-bottom: 25px;
+    }
+
+    .text{
+        background: rgb(238, 238, 238);
+        padding-left: 10px;
+        line-height: 30px;
+        padding-top: 5px;
+        padding-right: 10px;
+        border: 1px #ddd solid;
+
+        text-align:justify;
+        text-justify:inter-ideograph;
+    }
+</style>
+
+<body>
+
+
+<div class="wrapper-content">
+    <div class="ibox-content border0" >
+        <!--<div style="float:top;">-->
+            <!--<div style="display: inline;float: left;"><p class="page-title">商品详情</p></div>-->
+        <!--</div>-->
+
+        <div>
+            <button style="display: inline; float: left;" class="btn btn-primary disabled_flag" type="button" data-id="" onclick="javascript:history.back(-1);"><a id="back" href="#" style="color:#fff;">返回</a></button>
+        </div>
+
+        <div class="r-title">
+            <image class="r-icon" src="__SAN__/image/logofz.png"></image>
+            商品详情
+        </div>
+
+        <!--商品id-->
+        <input type="hidden" class="goods_id" value="{$info.goods_id}">
+
+        <form class="form-horizontal" style="padding-top: 30px">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品编号</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="goods_num" value="{$info.goods_num}">
+                    <input type="text" value="{$info.goods_num}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品标题</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="goods_title" value="">
+                    <input type="text" title="{$info.goods_title}" value="{$info.goods_title}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品类别</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="title" value="">
+                    <input type="text" value="{$info.title}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品价格</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="price" value="">
+                    <input type="text" value="{$info.price}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">新旧程度</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="new_old_index" value="">
+                    <input type="text" value="{$info.new_old_index}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品简介</label>
+                {if condition="$info.goods_intro neq ''"}
+                <div class="col-sm-5">
+                    <input type="hidden" name="goods_intro" value="">
+                    <div class="text">{$info.goods_intro}</div>
+                </div>
+                {/if}
+                {if condition="$info.goods_intro eq ''"}
+                <div class="col-sm-5">
+                    <input type="hidden" name="goods_intro" value="">
+                    <div class="text">暂无简介</div>
+                </div>
+                {/if}
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">关键词</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="key_words" value="">
+                    <input type="text" value="{$info.key_words}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">上传时间</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="id" value="">
+                    <input type="text" value='{$info.add_time|@date="Y-m-d H:i:s",###}' disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+            {if condition="$info.goods_status neq 0"}
+            <div class="form-group">
+                <label class="col-sm-4 control-label">审核时间</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="id" value="">
+                    <input type="text" value='{$info.check_time|@date="Y-m-d H:i:s",###}' disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+            {/if}
+
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">商品封面</label>
+                <div class="col-sm-5"><img class="goods-img" src="{$info.img}" width="250px" height="250px"></img></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">卖家用户</label>
+                <div class="col-sm-5">
+                    <input type="hidden" name="id" value="">
+                    <input type="text" value="{$info.nick_name}" disabled="disabled" name="user_num" class="form-control disabled_flag"  >
+                </div>
+            </div>
+
+
+        </form>
+
+
+
+        <hr />
+        <div class="form-horizontal" style="margin-top: 30px">
+            {if condition="$info.goods_status eq 0 || $info.goods_status eq 4"}
+            <div class="form-group">
+
+                <label class="col-sm-4 control-label">审核意见</label>
+                <div class="col-sm-5">
+                    <input type="hidden" class="status" value="">
+                    <input type="text" value="{$info.remark}"  name="remark" class="form-control disabled_flag remark"  >
+                </div>
+                {if condition="$info.goods_status neq 4"}
+                <div style="display:block;font-size: 12px;color: red;position: relative;top: 5px">(如驳回请简单填写原因)</div>
+                {/if}
+            </div>
+            {/if}
+
+            <div style="text-align: center">
+                {if condition="$info.goods_status eq 0"}
+                <button id="ban" class="layui-btn btn-del layui-btn-sm ">驳回</button>
+                <button id="ok" class="layui-btn btn-del layui-btn-sm ">通过</button>
+                {/if}
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+{include file="public/footer"}
+</html>
+
+<script>
+
+    $("#ban").click(function () {
+        console.log('驳回')
+        var goods_id = $(".goods_id").val()
+        var remark = $(".remark").val()
+        var goods_status = 4
+        if(remark == "" || remark == null) remark = "管理员驳回"
+
+        $.ajax({
+            type:'POST',
+            url:'https://www.taoxiaobei.cn/san/Goods/check',
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            error(err) {
+                console.log(err)
+            }
+        })
+    })
+
+    $("#ok").click(function () {
+        console.log("ok")
+        var goods_id = $(".goods_id").val()
+        var remark = $(".remark").val()
+        var goods_status = 1
+        $.ajax({
+            url: "https://www.taoxiaobei.cn/san/Goods/check",
+            type: "POST",
+            // contentType: "application/json",
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            err:function(err) {
+                console.log(err)
+            }
+        })
+    })
+
+    $(function () {
+        $(".goods").addClass("active");
+        $(".goods ul").addClass("in");
+    });
+    // $('.hh').on('click', function(event) {
+    //     event.preventDefault();
+    //     window.location.href=$(this).attr('data-href')
+    //
+    // });
+
+</script>
