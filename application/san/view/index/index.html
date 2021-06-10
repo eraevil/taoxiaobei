@@ -153,29 +153,27 @@
             <h3 style="height: 50px;line-height: 50px;">最新商品</h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row" >
         <table class="table admin-mb0 table-hover">
             <thead>
             <tr>
-                <th class="col-sm-4" style="border-bottom:0px !important">用户编号</th>
-                <th class="col-sm-3" style="border-bottom:0px !important">昵称</th>
-                <th class="col-sm-2" style="border-bottom:0px !important">性别</th>
-                <th class="col-sm-3" style="border-bottom:0px !important">联系电话</th>
-                <th class="col-sm-4" style="border-bottom:0px !important">学校</th>
-                <th class="col-sm-2" style="border-bottom:0px !important">状态</th>
-                <th class="col-sm-3" style="border-bottom:0px !important">注册时间</th>
-                <th class="col-sm-3" style="border-bottom:0px !important">详情</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">商品编号</th>
+                <th class="col-sm-4" style="border-bottom:0px !important" title="标题">标题</th>
+                <th class="col-sm-2" style="border-bottom:0px !important">卖家</th>
+                <th class="col-sm-2" style="border-bottom:0px !important">商品类别</th>
+                <th class="col-sm-2" style="border-bottom:0px !important">价格</th>
+                <th class="col-sm-3" style="border-bottom:0px !important">上传时间</th>
+                <th class="col-sm-4" style="border-bottom:0px !important">操作</th>
 
             </tr>
             </thead>
             <tbody>
             <!--<tr style="cursor: pointer;" class="hh" data-href="">-->
             <!--<td style="height: 48px">TXB20191116185702431</td>-->
-            <!--<td style="height: 48px">@</td>-->
-            <!--<td>男</td>-->
-            <!--<td>18383086596</td>-->
-            <!--<td>电子科技大学成都学院</td>-->
-            <!--<td>正常</td>-->
+            <!--<td style="height: 48px" title="@">@</td>-->
+            <!--<td>犁生好久</td>-->
+            <!--<td>电子产品</td>-->
+            <!--<td>20.00</td>-->
             <!--<td>2021-01-03</td>-->
             <!--<td>-->
             <!--<a href="" class="layui-btn btn-edit layui-btn-sm">查看</a>-->
@@ -183,38 +181,91 @@
             <!--</td>-->
             <!--</tr>-->
 
-            {volist name="$user_list" id="vo"}
+            {volist name="$goods_list" id="vo"}
             <tr style="cursor: pointer;" class="hh" data-href="">
-                <td style="height: 48px">{$vo.user_num}</td>
-                <td style="height: 48px">{$vo.nick_name}</td>
-                {if condition="$vo.user_sex eq 1"}
-                <td>男</td>
-                {else}
-                <td>女</td>
-                {/if}
-                <td>{$vo.user_phone}</td>
-                <td>{$vo.school_name}</td>
-                {if condition="$vo.trade_status eq 1"}
-                <td>正常</td>
-                {else}
-                <td>禁用</td>
-                {/if}
-                <td>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
+                <td style="height: 48px">{$vo.goods_num}</td>
+                <td style="height: 48px" title="{$vo.goods_title}">{$vo.goods_title}</td>
+                <td title="{$vo.nick_name}">{$vo.nick_name}</td>
+                <td>{$vo.title}</td>
+                <td>{$vo.price}</td>
+                <td title='{$vo.add_time|@date="Y-m-d H:i:s",###}'>{$vo.add_time|@date="Y-m-d H:i:s",###}</td>
                 <td>
-                    <a href="{:url('User/details',['id' => $vo.user_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>
-                    <button onclick="" class="layui-btn btn-del layui-btn-sm">删除</button>
+                    <!--<a href="{:url('Goods/details',['id' => $vo.goods_id])}" class="layui-btn btn-edit layui-btn-sm">查看</a>-->
+                    <a href="http://www.baidu.com" class="layui-btn btn-edit layui-btn-sm">查看</a>
+                    {if condition="$vo.goods_status eq 0"}
+                    <button onclick="ban({$vo.goods_id})" class="ban layui-btn btn-del layui-btn-sm">驳回</button>
+                    <button onclick="ok({$vo.goods_id})" class="ok layui-btn btn-del layui-btn-sm">通过</button>
+                    {/if}
                 </td>
+
             </tr>
             {/volist}
-
-
             </tbody>
         </table>
     </div>
+    <div style="text-align: center">{$goods_list->render()}</div>
 
 {include file="public/footer"}
 </html>
 <script>
+    function ban(id) {
+        var goods_id = id
+        var goods_status = 4
+        remark = "管理员驳回"
+
+        $.ajax({
+            type:'POST',
+            url:'https://www.taoxiaobei.cn/san/Goods/check',
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            error(err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function ok(id) {
+        var goods_id = id
+        var remark = ''
+        var goods_status = 1
+        $.ajax({
+            url: "https://www.taoxiaobei.cn/san/Goods/check",
+            type: "POST",
+            // contentType: "application/json",
+            contentType: "application/x-www-form-urlencoded",
+            //
+            // dataType: "json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            data:{
+                'goods_id': goods_id,
+                'goods_status': goods_status,
+                'remark': remark
+            },
+            success:function (res) {
+                window.location.href="https://www.taoxiaobei.cn/san/goods/index/type/0.html";
+            },
+            err:function(err) {
+                console.log(err)
+            }
+        })
+    }
+
+
+
     $(function () {
         $(".index").addClass("active");
         $(".index ul").addClass("in");

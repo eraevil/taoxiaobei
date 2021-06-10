@@ -10,14 +10,14 @@ class Index extends Common
         $admin = db('admin')->count();
         $user = db('user')->count();
 
-        $user_list = db('user')
-            ->alias('a')
-            ->join('school b','a.school_id = b.school_id')
+        $goods_list = db('goods')->alias('a')
+            ->join('user b','a.user_id = b.user_id')
+            ->join('category_01 c','a.category_id = c.id')
+            ->field('a.goods_id,goods_title,goods_num,nick_name,c.title,price,a.add_time,goods_status')
             ->order('add_time desc')
-            ->field('user_id,user_num,nick_name,user_sex,school_name,user_phone,trade_status,add_time')
             ->paginate(50);
 
-        return view('',['goods' => $goods,'admin' => $admin,'user' => $user, 'user_list' => $user_list]);
+        return view('',['goods' => $goods,'admin' => $admin,'user' => $user, 'goods_list' => $goods_list]);
     }
 
 }
